@@ -1,0 +1,48 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header home">
+    <div class="post-title">Articles</div>
+  </header>
+
+  {% if paginator.total_pages > 1 %}
+    <div class="pagination">
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Prev</a>
+      {% else %}
+        <span>&laquo; Prev</span>
+      {% endif %}
+      <p>&nbsp;|&nbsp;</p>
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}"> Next &raquo;</a>
+      {% else %}
+        <span>Next &raquo;</span>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="post-content">
+    {%- if site.posts.size > 0 -%}
+      {%- assign date_now = site.time | date: "%y%m" | to_integer -%}
+      <ul class="post-list">
+        {%- for post in paginator.posts -%}
+          <li class="post-list-item">
+            {% assign date_format = "%Y/%m/%d" %}
+            {% assign date_post = post.date | date: "%y%m" | plus: 1 %}
+              {%- assign new_post = "" -%}
+            <span class="post-date">{{ post.date | date: date_format }}</span>
+            {% if date_post >= date_now %}
+              {%- assign new_post = ":sparkles:" -%}
+            {% endif %}
+            <a class="post-link" href="{{ post.url | relative_url }}">{{ new_post }} {{ post.title | escape }}</a>
+            {%- if site.show_excerpts -%}
+              {{ post.excerpt }}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</article>
+
