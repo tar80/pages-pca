@@ -1,0 +1,54 @@
+<div class="sidebar-item-fixed">
+  <div class="sidebar-item sidebar-header">
+    <div class='sidebar-brand'>
+      {% assign array_title = site.title | split: " " %}
+      <a href="{{ site.baseurl }}/about/">{{ array_title[0] }}<BR>{{ array_title[1] }}<BR>{{ array_title[2] }}</a>
+    </div>
+    <p class="lead">{{ site.description }}</p>
+    <p class="contact">
+    {%- include icon-github.html -%}{%- include icon-rss.html -%}{%- include icon-mail.html -%}
+    </p>
+  </div>
+
+  <div class="sidebar-item sidebar-nav">
+    <ul class="nav">
+      <li class="nav-title">Pages</li>
+      <li>
+        <a class="nav-item" href="{{ site.baseurl }}">Articles</a>
+      </li>
+      {% for node in site.pages %}
+        {% if node.title != null %}
+          {% if node.layout == "page" %}
+            <li>
+              <a class="nav-item" href="{{ site.baseurl }}{{ node.url }}"> {{ node.title }} </a>
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="sidebar-item sidebar-nav">
+    <ul class="nav">
+      <li class="nav-title">Categories</li>
+      {% assign categories = site.categories | sort %}
+      {% for category in categories %}
+      <li>
+        <a class="nav-item" href="{{ site.baseurl }}/{{ site.category_dir }}#{{ category | first }}">
+          <span class="name">{{ category | first }}</span>
+          <span class="badge">{{ category | last | size }}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="sidebar-item sidebar-nav">
+    <ul class="nav">
+      <li class="nav-title">Recent Updates</li>
+      {% for post in site.posts limit:5 %}
+        <li><a class="nav-item" href="{{ site.baseurl}}{{ post.url }}">{{ post.date | date: "%m/%d " }}{{ post.title  | truncate: 14 }}</a></li>
+      {% endfor %}
+    <ul>
+  </div>
+</div>

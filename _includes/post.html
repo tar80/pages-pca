@@ -1,0 +1,18 @@
+<article class="post">
+  <header class="post-header">
+    <div class="post-title">
+      {{ page.title | escape }}
+    </div>
+    <span class="post-version">
+      対応バージョン: {{ page.version }}<BR>
+    </span>
+    <time class="post-date dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+      {%- assign date_format = site.date_format | default: "%Y/%m/%d" -%}
+      更新日: {{ page.date | date: date_format }} {{ page.comment }}
+    </time>
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>
