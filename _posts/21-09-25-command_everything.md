@@ -80,7 +80,7 @@ FIRSTEVENT , *if !%*findwindowclass(EVERYTHING_%(ETP%)) %: 【管理者権PPb.vb
 ^F , *string o,xflst=%*getcust(X_flst)
      *linecust win_pos,K_edit:FIRSTEVENT,*setcust X_flst=%so"xflst" %%: *string o,id=%%*findwindowtitle("everything-ETP") %%: *windowposition %%so"id",【0】,【0】 %%: *windowsize %%so"id",【窓サイズ横幅】,【縦幅】 %%: *linecust win_pos,K_edit:FIRSTEVENT,
      *setcust X_flst=%*regexp("%so"xflst"","s/(\d,\d,\d*),\d*/$1,【候補リスト行数】/")
-     *string o,path=%*input("" -title:"everything-ETP" -mode:e -k *completelist -set -detail:"user module" -file:"%%'list'%\ETOPTION.txt")
+     *string o,path=%*input("" -title:"everything-ETP" -mode:e -k *completelist -set -module:on -detail:"user module" -file:"%%'list'%\ETOPTION.txt")
      *jumppath %*name(D,%so"path") -entry:%*name(C,%so"path")
 
 ;*whereコマンド

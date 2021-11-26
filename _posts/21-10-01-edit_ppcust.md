@@ -58,8 +58,6 @@ X_ccode = 2
 ; grepコマンド内のtab文字は変換しないように注意
 ; ripgrepを使う場合は、grepの行と置き換える
 K_edit  = { ; 一行編集/PPe共用,K_lied,K_ppeが優先
-; うちのPPxdwはなぜかタイトルのみ英語になる
-; F12     , *stop !%*findwindowtitle(Customize by edited text)
 F12     , *stop !%*findwindowtitle(編集した内容の取込)
           *string o,backup=【%0backup\PPX.CFG】
           *string o,ckeys=【%'list'%\ppx_cfgkeys.txt】

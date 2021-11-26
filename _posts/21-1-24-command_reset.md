@@ -2,8 +2,8 @@
 layout: post
 title: 初期化後再設定
 version: PPx181以降
-date: 2021-09-19
-comment: 背景色変更を簡略化した。
+date: 2021-11-27
+comment: 処理中断キーをSPACEからBACKSPACEに変更した。
 categories: PPc
 ---
 ### ※※警告※※
@@ -23,7 +23,7 @@ categories: PPc
 2. 1.のリストファイルを%'list'ディレクトリに持ってくる。
 3. メニューからリセット(&R)すると、適用するリストファイルを選択できる。<BR>
 4. リストファイルを開いてマーク状態を確認後、ESC押下で自動的に初期化→再設定が始まる。
-  - SPACEで処理を中断可能。
+  - BACKSPACEで処理を中断可能。
 
 > - マークしたファイルに対して`PPCUSTW CA`が実行されます。`PPCUSTW CS`の処理が必要であればスクリプトの該当箇所を書き換えて下さい。
 > - 開いているPPcで直接コマンドを実行するとエラーが出るので、
@@ -50,7 +50,7 @@ scr  =  ;スクリプト親ディレクトリパス
 
 K_resetMap = {
 ESC   , *script %'scr'%\cmdReset.js
-SPACE , *mapkey delete,K_resetMap %: *color back
+BS , *mapkey delete,K_resetMap %: *color back
 }
 ```
 <BR>

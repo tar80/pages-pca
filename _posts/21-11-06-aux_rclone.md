@@ -14,7 +14,7 @@ aux:パス機能を用いてRcloneと連携するための設定。<BR>
 <details><summary>Rcloneについて</summary><div>
   <ul>
     <li>Rcloneはオンラインストレージを操作するためのコマンドラインツールです。<BR>
-    有名どころのサービスは概ね対応していて、onedriveもgdriveもdropboxもamazon\_S3も
+    有名どころのサービスは概ね対応していて、onedriveもgdriveもdropboxもamazon_S3も
     専用のアプリケーションは必要とせず、マウントする必要も無く、同様の操作で扱えます。
     </li>
     <li>通常%userprofile%\.config\rcloneに作られる設定ファイルはトークンなどがそのまま書き出されますが、

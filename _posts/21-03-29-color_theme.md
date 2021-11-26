@@ -27,17 +27,18 @@ WEB上で公開されているカラーテーマをPPvでも使えるように�
   ![sample]({{ site.baseurl }}{% link /public/img/colortheme3.png %})
 
 4. %M\_theme > Rebuildを押すとテーマメニューが再構築される。メニューの初期化時や、<BR>
-不要なテーマを整理した後などに実行。<BR>
-  ![sample]({{ site.baseurl }}{% link /public/img/colortheme4.png %})
+不要なテーマを整理した後などに実行。
+<BR><BR>
+![sample]({{ site.baseurl }}{% link /public/img/colortheme4.png %})
 
 ### 設定
 - M\_theme
   - テーマ用のメニュー。`MV_menu:&Theme=%M_theme`などに配置する。
-  - createColorTheme\.jsの初期設定で"themeDir"を変更した場合は
+  - createColorTheme\.jsの初期設定で定数"THEME\_DIR\_PATH"を変更した場合は
   "&Rebuild"内のパスも変更する。<BR>
 - CV\_hkey
   - 配色チェック用。拡張子.colortestの色設定。<BR>
-  > この設定は不要であれば省いて構いません。
+    > この設定は不要であれば省いて構いません。
 - createColorTheme\.js
   - 初期設定をする必要あり。詳細はスクリプト内のコメントを参照。
   - PPvだけでなくPPcとPPbにもテーマを適用できる。
