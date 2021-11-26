@@ -8,6 +8,3 @@ _site/
 .bundle/
 vendor/
 
-# Ignore posts
-_posts/
-public/img/
