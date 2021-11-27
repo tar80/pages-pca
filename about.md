@@ -66,4 +66,4 @@ FIRSTEVENT  , *set path+=【任意のディレクトリ】\git\usr\bin
    - 7-zip64.dll,7z.dll [frostmoon](http://frostmoon.sakura.ne.jp/) 統合アーカイバ
 
 ---
-<span style="text-align: center;">Powerd by [Jekyll](http://jekyllrb-ja.github.io/).The theme forked [monos](http://jekyllthemes.org/themes/monos/).The icons from [iconmonstr](https://iconmonstr.com/).Thank you.</span>
+Powerd by [Jekyll](http://jekyllrb-ja.github.io/).The theme forked [monos](http://jekyllthemes.org/themes/monos/).The icons from [iconmonstr](https://iconmonstr.com/).Thank you.
