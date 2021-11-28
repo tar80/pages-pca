@@ -17,8 +17,8 @@ categories: PPe
 > - コマンド追加用のマクロはPPeのメニューバー以外に登録してください。メニューバーから実行すると失敗します。
 
 ### 使い方
-- PPeでコマンドを打って遊ぶ。<BR>
-
+PPeでコマンドを打って遊ぶ。
+<BR><BR>
 ![sample]({{ site.baseurl }}{% link /public/img/edit_ppe.gif %})
 
 #### キーバインド
@@ -48,10 +48,10 @@ K_edit  = { ; 一行編集/PPe共用,K_lied,K_ppeが優先
 ;PPe
 K_ppe = {
 \^V_HBA , *execute C,%*selecttext() ; shift + ctrl + ":"
-^N      , *if 0%*editprop(list) %: %K"@DOWN %: *stop
-          %K"@F4
-^P      , *if 0%*editprop(list) %: %K"@UP %: *stop
-          %K"@F4
+^N      , *if 0%*editprop(list) %: %K"@DOWN" %: *stop
+          %K"@F4"
+^P      , *if 0%*editprop(list) %: %K"@UP" %: *stop
+          %K"@F4"
 }
 
 ;キー又はポップアップメニュー

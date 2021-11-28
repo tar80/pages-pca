@@ -2,8 +2,8 @@
 layout: post
 title: fenrirscanを用いたパス補完
 version: PPx181+3以降
-date: 2021-11-23
-comment: selStr.js -> setSel.jsに変更。
+date: 2021-11-28
+comment: selStr.js -> setSel.jsに変更。補完リストの読み込み方法を調整。
 categories: PPc
 ---
 ### 説明
@@ -14,7 +14,7 @@ PPc一行編集でのパス補完サポート。
 - キー操作でパスを昇降可能。
   > 上方への補完は[PPxをランチャとして使う⑦ステップイン・アウト](http://hoehoetukasa.blogspot.com/2018/11/ppx_7.html)を参考にしました。
 - コマンドランチャのように入力途中でENTERしても補完。
-  > ヒストリに履歴を残さないように%\*input(... '-mode:e -k \*completelist -detail"path"')としています。
+  > ヒストリに履歴を残さないように%\*input(... '-mode:e -k \*completelist -module:off -history:d')としています。
 - スペースを含むパスにある程度対応。
 - コマンドを含む文字列にある程度対応。
 - マクロ文字(%0など)、auxパスに対応。
@@ -34,7 +34,7 @@ PPc一行編集でのパス補完サポート。
 
 ### 使いかた
 補完の邪魔になることが多いので標準でEverything Search Moduleは不使用。
-有効にするには-module:onの状態で`-detail:"path"`の箇所を`-detail:"path module"` `-history:d`などに変更する。
+有効にするには`-module:off`の箇所を`-module:on`に変更する。
 
 <BR>
 ![sample]({{ site.baseurl }}{% link /public/img/complete_path.gif %})
@@ -75,9 +75,9 @@ X_ltab = 0,2
 
 ;PPcキーバインド
 KC_main = {
-'@'    , *string o,path=%*input("%*name(DN,"%FDVN")" -title:"Jumppath.." -mode:e -k *editmode -allkey %%: *completelist -detail:"path" %%: *mapkey use,K_liedMAP)
+'@'    , *string o,path=%*input("%*name(DN,"%FDVN")" -title:"Jumppath.." -mode:e -k *editmode -allkey %%: *completelist -module:off -history:d %%: *mapkey use,K_liedMAP)
          *jumppath %sgo"path"
-\V_HC0 , *string o,path=%*input("%*name(DN,"%FDVN")" -title:"Jumppath..OP" -mode:e -k *editmode -allkey %%: *completelist -detail:"path" %%: *mapkey use,K_liedMAP)
+\V_HC0 , *string o,path=%*input("%*name(DN,"%FDVN")" -title:"Jumppath..OP" -mode:e -k *editmode -allkey %%: *completelist -module:off -history:d %%: *mapkey use,K_liedMAP)
          *if 2 > %*js(PPx.Result=PPx.Pane.count;) %: *ppc -noactive -bootid:~ %sgo"path" %: *stop
          *execute ~,*linemessage %sgo"path"
 }

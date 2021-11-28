@@ -16,7 +16,7 @@ PPcのサムネイルキャッシュを手動で制御するための設定。
 - コマンドを実行すると表示中の画像のサムネイルが生成される。一度キャッシュを削除したうえで実行するのでキャッシュ済みのサムネイルは再生成される。
 - ディレクトリを移動するとLOADEVENTが実行され、自動でコマンド実行前の画像設定(XC\_ocig)に戻る。
 
-#### :wrench:設定
+#### 設定
 ```clean
 ;PPcメニュー
 ThumbCache on   = *js "for(var i=0,l=PPx.EntryDisplayCount;i<l;i++){if(PPx.Entry(i).Size){PPx.Execute('*delete ""'+PPx.Entry(i).Name+':thumbnail.jpg""');}}"

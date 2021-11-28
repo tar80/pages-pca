@@ -68,7 +68,7 @@ TORO氏にHP掲示板で質問した内容や、自分で確認した範囲で�
 
 #### aux:パス専用メニュー
 - 例えば、aux:S\_auxTest\\ 内を対象とするメニューを出したいならば、
-  S\_auxTest.○○○(※以降S\_auxTest.abcとする)という項目を作り、
+  S\_auxTest.○○○(以降S\_auxTest.abcとする)という項目を作り、
   `?auxabc`を実行すれば表示される。<BR>
 - S\_auxTest1.abc、S\_auxTest2.abc、いずれも`?auxabc`で表示されるので
   aux:パスごとの個別メニューに対応できる。

@@ -89,7 +89,7 @@ FIRSTEVENT , *if !%*findwindowclass(EVERYTHING_%(ETP%)) %: 【管理者権PPb.vb
 ;option付き
 ^W , *linecust DelEtSi,KC_main:ACTIVEEVENT, *string i,Edit_OptionCmd= %%: *string i,EtPf= %%: *linecust DelEtSi,KC_main:ACTIVEEVENT,
      *string i,Edit_OptionCmd=*string i,EtPf=%%*input("%%si"EtPf"" -title:"Prefix" -mode:e -k *completelist -file:"%%'list'%\ETOPTION.TXT") %%: *setcaption ETP Search   Prefix:%%si"EtPf"
-     *execute ,*whereis -text:"%%si"EtPf"%*input("%FD*" -title:"ETP Search" -mode:Os)" -type:5 -listfile:"%'temp'%\ppxresult.xlf"
+     *execute ,*whereis -text:"%%si"EtPf"%*input("%FD " -title:"ETP Search" -mode:Os)" -type:5 -listfile:"%'temp'%\ppxresult.xlf"
 
 ;Everythingの起動設定。
 key , *if 0%*findwindowclass(EVERYTHING) %: *focus #%*findwindowclass(EVERYTHING) %: *stop

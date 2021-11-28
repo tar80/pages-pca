@@ -16,10 +16,10 @@ PPc上のカーソル位置が画面真ん中より右にあれば左に、左�
 > スクリプト内でPositionModule,WindowModuleを使用。
 
 ### 使い方
- - スクリプト内変数`DISP_WIDE`を環境に合わせて設定する。
+ - スクリプト内定数`DISP_WIDE`を環境に合わせて設定する。
  - PPvを起動。
 
-※画像は古いカスタム状態です。上下左右移動は廃止しました。
+※画像は古いカスタム状態です。上下左右移動は廃止(左右移動のみ)しました。
 <BR>
 ![sample]({{ site.baseurl }}{% link /public/img/moving_ppv.gif %})
 
