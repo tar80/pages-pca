@@ -79,7 +79,7 @@ KC_main = {
          *jumppath %sgo"path"
 \V_HC0 , *string o,path=%*input("%*name(DN,"%FDVN")" -title:"Jumppath..OP" -mode:e -k *editmode -allkey %%: *completelist -module:off -history:d %%: *mapkey use,K_liedMAP)
          *if 2 > %*js(PPx.Result=PPx.Pane.count;) %: *ppc -noactive -bootid:~ %sgo"path" %: *stop
-         *execute ~,*linemessage %sgo"path"
+         *execute ~,*jumppath %sgo"path"
 }
 ;一行編集キーバインド
 K_lied = {

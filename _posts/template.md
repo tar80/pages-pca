@@ -16,5 +16,13 @@ categories: PPc PPv PPb PPe PPcust AUX Script Sample
 []({{ site.baseurl }}{% post_url %})
 ![sample]({{ site.baseurl }}{% link /public/img/ %})
 ```clean
+A_exec = {
+scr  =    ;スクリプトをまとめておくディレクトリパス
+cfg  =    ;PPxの設定ファイルをまとめておくディレクトリパス
+list =    ;読み書きするリストをまとめておくディレクトリパス
+work =    ;作業用のディレクトリパス
+myrepo =  ;gitレポジトリrootパス
+reces =   ;reces.exeのパス
+}
 ```
 
