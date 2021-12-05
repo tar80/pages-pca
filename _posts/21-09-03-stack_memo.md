@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 集積メモ
-version: PPx181以降181
+version: PPx181以降
 date: 2021-09-25
 comment: "%OCを%OCPに変更。"
 categories: PPc

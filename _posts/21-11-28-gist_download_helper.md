@@ -25,7 +25,7 @@ scr  =    ;スクリプトをまとめておくディレクトリパス
 
 _Command = {
 dlgist = *string o,url=%*clippedtext()
-         *string o,name=%*regexp("%so"url"","s/^.*\/(.*\.js)$/$1/")
+         *string o,name=%*name(C, "%so"url")
          *ifmatch !.js,%so"name" %: %"処理の中止"%I"スクリプトではありません%bn%so"name"" %: *stop
          %"curl"%Q%so"name"をダウンロードします
          *string o,filepath=%'scr'%\%*regexp("%so"name"","s/_es6//")

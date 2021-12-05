@@ -9,7 +9,7 @@ categories: PPc
 ### 説明
 SHIFT+Rキー(リネーム一括処理)上で呼び出すリネームテンプレート。
 
-> - 文字列の選択には[setSel.js]({{ site.baseurl }}{% post_url 2020-12-26-script_setSel %})を使用。
+> - 文字列の選択には[setSel.js]({{ site.baseurl }}{% post_url 20-12-26-script_setSel %})を使用。
 > -  コマンド内で%\*padding(PPXTEXT.DLL)を使用。
 > - 数字桁揃えはファイル名の【○○○数字.拡張子】の形式で、【数字.拡張子】部分が引き継がれます。<BR>
 他の形式だと誤爆します。実行する前に試行(T)で確認してください。

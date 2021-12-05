@@ -8,7 +8,7 @@ categories: PPc
 ---
 ### 説明
 親ディレクトリを経由せず、直接隣接するパスに移動するスクリプト。<BR>
-元ネタは[5chPPxスレ](http://anago.5ch.net/test/read.cgi/software/1264624581/219)で、[つかさのほえほえ日記](http://hoehoetukasa.blogspot.com/2014/01/ppx_29.html)で公開されているものをさらに改変しています。<BR>
+元ネタは[5chPPxスレ](http://anago.5ch.net/test/read.cgi/software/1264624581/219)で、[つかさのほえほえ日記](http://hoehoetukasa.blogspot.com/2014/01/ppx_29.html)でも公開されているものをさらに改変しています。<BR>
 - 下のようなディレクトリ構成でカレントが`DIR\B`であった場合、引数=`0`で`DIR\A`へ、`1`で `DIR\C`へ移動します。
 
   ```clean

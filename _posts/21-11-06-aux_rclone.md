@@ -40,7 +40,7 @@ aux:パス機能を用いてRcloneと連携するための設定。<BR>
   | PPb | 非表示 | 最小化 |
   | パスワードを間違えた時 | PPbやls2lfのプロセスが残る<BR>※PPb非表示をやめれば回避できる | PPcの再起動が必要 |
 
-> ※カスタマイズにはPPxKeyModuleとls2lf\.exe(ppxaux06)が必要です。
+> カスタマイズにはPPxKeyModuleとls2lf\.exe(ppxaux06)が必要です。
 
 
 ### 使い方
