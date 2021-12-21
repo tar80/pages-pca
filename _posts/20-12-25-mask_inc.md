@@ -2,8 +2,8 @@
 layout: post
 title: エントリマスクでインクリサーチ
 version: PPx181以降
-date: 2021-02-13
-comment: PPcの下端位置に合わせてダイアログの位置を設定するようにした。
+date: 2021-12-21
+comment: コマンドマクロを修正。
 categories: PPc
 ---
 ### 説明
@@ -24,10 +24,10 @@ PPc
 | F | エントリマスク呼び出し |
 
 PPcキーバインド
-```clean
+```
 KC_main = {
-F , *if %*windowrect(%N,b)<500 %: *linecust win_pos,K_edit:FIRSTEVENT,*windowposition %%*findwindowtitle("エントリマスク"),%%*windowrect(%%NC#,l),%%*windowrect(%%NC,b) %%: *js "PPx.Execute('*linecust win_pos,K_edit:FIRSTEVENT,')"
-    %k"o':'ed','r':'
-    %K"@F" %: *deletehistory m,0
+F , *if 500>%*windowrect(%N,b) %: *linecust win_pos,K_edit:FIRSTEVENT,*windowposition %%*findwindowtitle("エントリマスク"),%%*windowrect(%%NC#,l),%%*windowrect(%%NC,b) %%: *linecust win_pos,K_edit:FIRSTEVENT,
+    %k"o':'ed','r':' %: *maskentry -temp |
+    *deletehistory m,0
 }
 ```

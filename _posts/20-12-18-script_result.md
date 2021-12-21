@@ -8,7 +8,7 @@ categories: Script
 ---
 ### 説明
 ユーザーコマンド`%*result()`を使い、変数の参照を一元的にするスクリプト。
-- `%*js(PPx.Result=PPx.○○○)`を`%*result(○○○)`ようにして参照できます。
+- `%*js(PPx.Result=PPx.○○○)`を`%*result(○○○)`のようにして参照できます。
 - 自作変数を登録できます。
 
 ##### 変数の説明
@@ -25,12 +25,12 @@ categories: Script
 
 ### 使い方
 `%*result()`を実行して戻り値を得る。第一引数は変数名、第二引数は自作変数用。%FDCなどの複数回実行されるマクロ文字に対応するために利用できます。
+- マークしたエントリが存在するかどうかの確認`%*result(exists,%FDC)`。マーク数＝回数ぶん実行される。
 - PPx.Entry.commentを得る場合`%*result(Entry.Comment)`
 - listfile上のマークエントリからPPx.Entry.Commentを得る場合`%*result(lfnames,Comment)`
 
-
 #### 設定
-```clean
+```
 ;エイリアス
 A_exec = {
 myrepo = ;gitリポジトリ(rootのパス)

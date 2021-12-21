@@ -2,17 +2,18 @@
 layout: post
 title: PPxでGrep
 version: PPx181以降 KeyModuleR8以降
-date: 2021-11-14
-comment: スクリプトに処理を追加した。
+date: 2021-12-22
+comment: "書き出すリストファイルパスを%*temp(result.xgrep,name)に変更。"
 categories: PPc
 ---
 ### 説明
 各種grepの出力結果をPPxエントリとして扱えるようにする設定集。
 - 使用するコマンドを選択できます。例えばripgrepの結果はリストファイルに出力、
 jvgrepの結果はPPvで見るというようなことができます。
-- `"``%`のエスケープを意識せず検索できます。
-- PPvで表示時には一時的にキャレットモードに変更しています。
+- `"` `%`のエスケープを意識せず検索できます。
+- PPvで表示時には一時的にキャレットモードに変更します。
 - 検索結果にはLFexec\.js経由で指定したコマンドを実行可能。
+- 検索結果は%'temp'に蓄積されるので、[同階層の隣合うディレクトリに移動]({{ site.baseurl}}{% post_url 20-12-25-move_directory %})を使うと簡単に履歴を辿れます。窓別表示形式をGREPに変更しておくと便利。
 
 > - \*OPTION\.TXTを%'list'に配置する必要があります。[sample](https://gist.github.com/tar80/f3e5860214e758834bdf0bd619060b0f)<BR>
 >    - \*OPTION\.TXTは文字コードに注意。ユニコードならUTF16LBかUTF8BOMでないと文字化けします。<BR>
@@ -32,7 +33,7 @@ jvgrepの結果はPPvで見るというようなことができます。
 ![sample]({{ site.baseurl }}{% link /public/img/grep.gif %})
 
 #### 設定
-```clean
+```
 ;エイリアス
 A_exec = {
 scr  =  ;スクリプトをまとめておくディレクトリパス
@@ -50,16 +51,16 @@ KV_crt    = {
 ; %sp"grep"はPPvに設定される変数で中身は'1'。grep表示の判別用
 key , *topmostwindow %N,0
       *string o,crtline=%*script(%'scr'%\compCode.js,"s","""")
-      *if 0%sp"grep" %: gvim --remote-tab-silent +%*regexp("%so"crtline"","s/^[^:]*:(\d*):.*/$1") %:extract(C"%%FDN")%\%*regexp("%so"crtline"","s/(^[^:]*):.*/$1/") %: *stop
+      *if 0%sp"grep" %: gvim --remote-tab-silent +%*regexp("%so"crtline"","s/^[^:]*:(\d*):.*/$1") %*extract(C"%%FDN")%\%*regexp("%so"crtline"","s/(^[^:]*):.*/$1/") %: *stop
       gvim --remote-tab-silent +%L %FDC
 }
 
 ;grep検索一行編集を呼ぶ
 ; スクリプトを実行すると、%si"output"(中身はLF|PPv)が設定され判別に利用できる。
-key or menu , *string o,xlf="%'list'%\PPXGREP.XLF"
+key or menu , *string o,lf="%*temp(result.xgrep,name)"
               *string o,cmd=grep
-              %Oi *script %'scr'%\cmdGrep.js,%so"xlf",%so"cmd",LF
-              *ifmatch %si"output",LF %: *ppc -r -single -mps -bootid:W %so"xlf" -k *viewstyle -temp &GREP
+              %Oi *script %'scr'%\cmdGrep.js,%so"lf",%so"cmd",LF
+              *ifmatch %si"output",LF %: *ppc -r -single -mps -bootid:W %so"lf" -k *viewstyle -temp &GREP
               string i,output=
 
 ;コメント検索
@@ -96,7 +97,7 @@ E_editor  = {
 
 ;表示形式
 MC_celS = {
-GREP = M WF12 f5 C200 s1
+GREP = M WF12 S1 f5 C200 s1
 }
 
 ;ディレクトリ別設定(リストファイル)

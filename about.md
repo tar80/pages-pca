@@ -10,13 +10,13 @@ winXP\_32bit(JScript)とwin10\_64bit(ES6)で動作確認しています。
  - カスタマイズは自己責任でお願いします。また必ずバックアップを取って下さい。<BR>
  `%Odb *cd %0 %: *ppcust CD %0%\PPX_%*nowdatetime(y-N-D).CFG`
  - 全ての記事においてScriptModule(PPXSCR.DLL)R18は入っているものとして扱います。
- - スクリプトはJscriptとES6で記述していますが見える部分の違いはありません。ES6を使う場合は
+ - スクリプトはJScriptとES6で記述していますが見える部分の違いはありません。ES6を使う場合は
  ファイル名から`_es6`の部分を除去し、`*setcust _Others:usejs9=4`を実行後
- 再起動してください。また文字コードがutf-8の場合はBOMを付けてください。
+ 再起動してください。また文字コードがutf-8の場合はBOMを付けてください。[スクリプトのダウンロードヘルパー]({{ site.baseurl }}{% post_url 21-11-28-gist_download_helper %})も参考にしてください。
 
 #### 初期設定
 カスタマイズで使う全エイリアス。※一時的な登録は除く
-```clean
+```
 A_exec = {
 scr  =    ;スクリプトをまとめておくディレクトリパス
 cfg  =    ;PPxの設定ファイルをまとめておくディレクトリパス
@@ -37,19 +37,20 @@ reces =   ;reces.exeのパス
   - KeyModule
   - EverythingSearchModule
 
-- **外部ソフト**
+- **外部ソフトウェア**
    - Git for windows [git-scm](https://git-scm.com/download/win) gitコマンド群
    - Fenrir [vector](http://hp.vector.co.jp/authors/VA026310/) fenrirscanのパスリスト生成機能を使っています。
    - Ralpha [nilposoft](http://nilposoft.info/)  画像処理
    - Reces [frostmoon](http://frostmoon.sakura.ne.jp/) 書庫操作
    - Everything [voidtools](https://www.voidtools.com/) インデックス検索
    - Rclone [RCLONE](https://rclone.org/) オンラインストレージ操作
+   - Nyagos [github](https://github.com/nyaosorg/nyagos/releases) コマンドラインシェル
 
 - **外部コマンド**
    - linux command(sed,xargs,grepなど) git for windowsに入っています。
      > よくわからんけどカスタマイズは試してみたいという人はGitForWindowsポータブル版を<BR>
      落としてきて任意のディレクトリに置き、以下の設定をすればPPc上からはパスを通した状態になります。
-```clean
+```
 KC_main = {
 FIRSTEVENT  , *set path+=【任意のディレクトリ】\git\usr\bin
 }

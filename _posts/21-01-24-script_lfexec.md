@@ -12,7 +12,8 @@ listfileのマークした行情報を一行ずつコマンドに渡します。
 - 変数(number)はShortName項目を数値として解釈した値。
   - ShortNameが数値でない場合は1を返します。(※cmdGrep\.jsのresult用途)
 
-> スクリプトから呼び出すコマンドは<span style="color:red;">Function関数</span>で読み込んでいます。
+> - スクリプトから呼び出すコマンドは<span style="color:red;">Function関数</span>で読み込んでいます。
+> - git grep <commit hash>の検索結果を開く処理(git cat-file -p相当)は現在非対応。
 
 ### 使い方
 - lfexec\_cmd\.jsのcmd[]内に実行するコマンドを記述する。変数は、ファイルパス= `path`, ショートネーム= `shortname`,
