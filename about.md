@@ -38,17 +38,18 @@ reces =   ;reces.exeのパス
   - EverythingSearchModule
 
 - **外部ソフトウェア**
-   - Git for windows [git-scm](https://git-scm.com/download/win) gitコマンド群
+   - Git for windows [git-scm](https://git-scm.com/download/win) バージョン管理システム
    - Fenrir [vector](http://hp.vector.co.jp/authors/VA026310/) fenrirscanのパスリスト生成機能を使っています。
    - Ralpha [nilposoft](http://nilposoft.info/)  画像処理
    - Reces [frostmoon](http://frostmoon.sakura.ne.jp/) 書庫操作
    - Everything [voidtools](https://www.voidtools.com/) インデックス検索
    - Rclone [RCLONE](https://rclone.org/) オンラインストレージ操作
+   - Windows Terminal [github](https://github.com/microsoft/terminal/releases) 端末エミュレータ
    - Nyagos [github](https://github.com/nyaosorg/nyagos/releases) コマンドラインシェル
 
 - **外部コマンド**
    - linux command(sed,xargs,grepなど) git for windowsに入っています。
-     > よくわからんけどカスタマイズは試してみたいという人はGitForWindowsポータブル版を<BR>
+     > よくわからんけどカスタマイズは試してみたいという人はGitForWindowsポータブル版を
      落としてきて任意のディレクトリに置き、以下の設定をすればPPc上からはパスを通した状態になります。
 ```
 KC_main = {

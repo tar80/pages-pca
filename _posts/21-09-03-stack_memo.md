@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 集積メモ
-version: PPx181以降
-date: 2021-09-25
-comment: "%OCを%OCPに変更。"
+version: PPx182+3以降
+date: 2021-12-26
+comment: クリップボードの利用をやめた。
 categories: PPc
 ---
 ### 説明
@@ -18,11 +18,9 @@ categories: PPc
 > - メモは%sp"stackmemo"に入っています。<BR>
   削除はPPcを終了。または`*string p,stackmemo=`を実行。
 > - PPv上からPPeを起動する場合は`*execute C,*ppe`とする。
-> - PPeの起動時にクリップボード操作をしています。また、<BR>
-    コマンド内でTextModuleの%*clippedtextを使用しています。
 
 #### 設定
-```clean
+```
 ;PPc用コマンド
 key or menu , %OCP *string p,stackmemo=## %*input(-title:"stack memo.." -mode:e)%bn%sp"stackmemo"
 
@@ -37,6 +35,6 @@ stack &memo = %OCP *execute C,*string p,stackmemo=## %*selecttext%%bn%%sp"stackm
 
 ;PPe
 K_ppe = {
-FIRSTEVENT , *ifmatch !0,0%sp"stackmemo" %: %OCP *string o,cb=%*clippedtext %: *cliptext %sp"stackmemo" %: %K"@^V" %: *cliptext %so"cb"
+FIRSTEVENT , *ifmatch !0,0%sp"stackmemo" %: *insert %sp"stackmemo"
 }
 ```

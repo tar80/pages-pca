@@ -2,8 +2,8 @@
 layout: post
 title: Everythingと連携
 version: PPx182以降
-date: 2021-11-14
-comment: PPx181+3の更新に対応。
+date: 2021-12-26
+comment: "%*findwindowclassの記述を修正した。"
 categories: PPc
 ---
 ### 説明
@@ -58,7 +58,7 @@ ETPサーバは通常とは別インスタンス(別の設定とデータベー�
 ### 設定
 
 **PPx**
-```clean
+```
 A_exec = {
 list    = ;読み書きするリストをまとめておくディレクトリパス
 }
@@ -74,7 +74,7 @@ ETP_PART = 1000   ; 簡易検索時の最大回答数(一行編集のパス補�
 ;【】を編集。
 KC_main = {
 ;ETPサーバの起動設定
-FIRSTEVENT , *if !%*findwindowclass(EVERYTHING_%(ETP%)) %: 【管理者権PPb.vbs】-c "*run -d:【Everythingのインストールディレクトリ】 Everything.exe -minimized -admin -instance ETP -connect localhost:【ポート番号】 -drive-links"
+FIRSTEVENT , *if !%*findwindowclass("EVERYTHING_(ETP)") %: 【管理者権PPb.vbs】-c "*run -d:【Everythingのインストールディレクトリ】 Everything.exe -minimized -admin -instance ETP -connect localhost:【ポート番号】 -drive-links"
 
 ;一行編集everything Search
 ^F , *string o,xflst=%*getcust(X_flst)

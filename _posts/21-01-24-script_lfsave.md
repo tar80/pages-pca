@@ -2,8 +2,8 @@
 layout: post
 title: LFsave.js
 version: 181以降
-date: 2021-11-01
-comment: スクリプトを書き直した。
+date: 2021-12-25
+comment: 元のリストから取得するデータの範囲指定が間違っていたので修正。
 categories: Script
 ---
 <BR>

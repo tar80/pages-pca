@@ -49,6 +49,7 @@ key or menu , *if %*js(PPx.Result = PPx.EntryMarkCount;) >= 4 %: %"確認"%Q"%*j
 KV_crt    = {
 ; gvimで開く場合
 ; %sp"grep"はPPvに設定される変数で中身は'1'。grep表示の判別用
+; *topmostwindowはWindow Moduleのコマンド
 key , *topmostwindow %N,0
       *string o,crtline=%*script(%'scr'%\compCode.js,"s","""")
       *if 0%sp"grep" %: gvim --remote-tab-silent +%*regexp("%so"crtline"","s/^[^:]*:(\d*):.*/$1") %*extract(C"%%FDN")%\%*regexp("%so"crtline"","s/(^[^:]*):.*/$1/") %: *stop
