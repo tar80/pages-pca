@@ -2,8 +2,8 @@
 layout: post
 title: タグシステム
 version: PPx182+4以降
-date: 2021-12-29
-comment: 投稿。
+date: 2022-01-03
+comment: スクリプトとキーバインドを修正。PPvのみ補完リストに%su"taglist"を読み込むようにした。
 categories: PPc
 ---
 ### 説明
@@ -16,6 +16,7 @@ categories: PPc
 - タグに色付けしてPPvで表示。(おまけ機能)
 
 > - スクリプト内で[compCode.js]({{ site.baseurl }}{% post_url 20-12-22-script_compcode %})を使用。
+> - スクリプト内おまけ機能でWindowModuleを使用。
 
 **タグ用メニューの説明**
 
@@ -29,12 +30,12 @@ categories: PPc
 
 > - 1:TagSysからタグリストを選択すると_User:taglistにパスが設定されます。
 > - タグ項目の生成では一つのタグにつき、二つの項目が追加されます。`-`が付いた項目は削除用です。
-> - 重複するパスは一つにまとめられます。
+> - 重複するタグは一つにまとめられます。
 
 ### 使い方
 1. tagMakeMenu\.jsの初期設定をする。
 1. `*edit -new -lf -utf8bom %'list%\tag\_default.txt`(初期値。スクリプト内変数TAG_LISTと同一のパス)を実行してタグリストを生成する。(必須)
-1. 2.のファイルに使いたいタグを書き込む。タグは一行で1タグと認識されます。
+1. 2.のファイルに使いたいタグを書き込む。タグは一行で1タグと認識される。
 1. 次にタグ用のメニューを呼び出し、`1:TagSys`を押すと一行編集が起動するので`_default.txt`を選択するとメニューにタグが追加される。<BR>
 1. 適当にエントリにタグを付けていく。
 1. コメントサーチで絞り込む。
@@ -83,15 +84,14 @@ ex = ??M_UecoSub
 
 KC_main = {
 '['   , *string o,cmnt=%*comment
-        *ifmatch *"*,0%so"cmnt" %: *string o,cmnt=%*regexp(%so"cmnt","/""/""""/g")
-        *ifmatch !0,0%su"taglist" %: *string o,comp=*completelist -set -file:%%su"taglist" -detail:"user1"
-        *comment extract,"%*input("%so"cmnt"" -title:"Comment.." -mode:Re -k *string e,filename=%su"taglist" %%: %so"comp" %%: *mapkey use,K_tagSysMap)"
+        *ifmatch *"*,0%so"cmnt" %: *string o,cmnt=%*regexp(%so"cmnt","/""/""""""""/g")
+        *comment extract,"%*input("%so'cmnt'" -title:"Comment.." -mode:Re -k *mapkey use,K_tagSysMap)"
 ^'['  , *script %'scr'%\commentSearch.js,filter
 }
 
 KV_img = {
 '[' , *string o,cmnt=%*extract(C"%%*comment")
-      *ifmatch *"*,0%so"cmnt" %: *string o,cmnt=%*regexp(%so"cmnt","/""/""""/g")
+      *ifmatch *"*,0%so"cmnt" %: *string o,cmnt=%*regexp(%so"cmnt","/""/""""""""/g")
       *ifmatch !0,0%su"taglist" %: *string o,comp=*string e,filename=%su"taglist" %%: *completelist -set -file:%su"taglist" -detail:"user1" %%:
       *string o,cmnt=%*input("%so"cmnt"" -title:"Comment.." -mode:Re -k %so"comp" *mapkey use,K_tagSysMap)
       *execute C,*comment extract,"%so"cmnt"

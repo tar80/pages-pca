@@ -2,8 +2,8 @@
 layout: post
 title: "AUX:Rclone"
 version: PPx181以降
-date: 2021-11-06
-comment: 投稿。
+date: 2022-01-03
+comment: "ログ取得中の通知メッセージを*jobコマンドに変更した。"
 categories: PPc @AUX
 ---
 ### 説明
@@ -63,7 +63,7 @@ PPc
 
 #### 設定
 
-```clean
+```
 A_exec = {
 scr  =  ;スクリプトをまとめておくディレクトリパス
 list =  ;読み書きするリストをまとめておくディレクトリパス
@@ -72,12 +72,12 @@ list =  ;読み書きするリストをまとめておくディレクトリパ�
 ; 標準出力を使った直接表示。小さいファイルサイズのみ読み込める
 ; ※ppxやrcloneのバージョン、使用するsusiePluginによっては画像の読み込みができないかもしれません
 K_rcloneMap = {
-V , rclone cat %*regexp("%si"stragePath"%*addchar(/)","/:\//:/")%R | %0ppvw %: *linemessage !"loading %R
+V , %Oq *execute ba,*job start %%: rclone cat %*regexp("%si"stragePath"%*addchar(/)","/:\//:/")%R | %0ppvw %%& *job end
 }
 ```
 <BR>
 通常版
-```clean
+```
 S_auxRCLONE = {
 base    = aux://S_auxRCLONE/ %; remote:/path
 cmd     = rclone.exe
@@ -104,7 +104,7 @@ deldir  = *execute C,*logwindow "remdir %*path" %: %*cmd rmdir "%*path" %:
 ```
 <BR>
 スクリプト版
-```clean
+```
 S_auxRCLONE = {
 base    = aux://S_auxRCLONE/ %; remote:/path
 cmd     = rclone.exe
