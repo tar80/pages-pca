@@ -10,4 +10,5 @@ vendor/
 
 # Ignore
 _drafts/
-
+gemfile.lock
+.markdownlint.yaml
