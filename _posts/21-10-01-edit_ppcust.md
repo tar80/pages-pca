@@ -6,9 +6,13 @@ date: 2021-11-23
 comment: ^\@のキーバインドを修正。popup.jsは不要になった。
 categories: PPcust
 ---
+
 ### 説明
+
 [PPeで簡単なコード編集]({{ site.baseurl }}{% post_url 20-12-27-edit_ppe %})ではPPeを使ったコード編集に触れましたが、
-`*ppcust -edit`でも同等のコード編集ができます。<BR>こちらはPPe版と比較して、
+`*ppcust -edit`でも同等のコード編集ができます。
+こちらはPPe版と比較して、
+
 - 一部のコマンドをK\_ppeからK\_editに移動したので全体で動作するようになった。
 - PPx設定パラメータを簡易ポップアップするキーバインドを追加。
 - 現在使用中の全設定登録名(KC\_mainなど)を補完リストに読み込むキーバインドを追加。
@@ -19,14 +23,16 @@ categories: PPcust
 > コマンド内で[compCode.js]({{ site.baseurl }}{% post_url 20-12-22-script_compcode %})を使用。
 
 ### 使い方
- - 設定編集を起動。`%Obd *cd %0 %: *ppcust -edit`
- - F12をポチっと。
- - 目当ての設定を補完して編集。
+
+- 設定編集を起動。`%Obd *cd %0 %: *ppcust -edit`
+- F12をポチっと。
+- 目当ての設定を補完して編集。
 
 ![sample]({{ site.baseurl }}{% link /public/img/edit_ppcust.gif %})
 
 #### キーバインド
-**PPcust**
+
+##### PPcust
 
 | KEY | COMMAND |
 |:-|:-|
@@ -38,12 +44,13 @@ categories: PPcust
 | CTRL+N | 補完リストを下方向に移動 |
 | CTRL+P | 〃        を上方向に移動 |
 
-<BR>
+
 > ctrl+shif+@は`KC_main`などの編集中テキストを選択した状態で実行すると
 文字数制限のある簡易ポップアップを表示。
 
 #### 設定
-```clean
+
+```text
 ;エイリアス
 A_exec = {
 cfg     = ;PPxの設定ファイルをまとめておくディレクトリパス
