@@ -57,6 +57,7 @@ PPc
 | CTRL+N | 次の候補 |
 | CTRL+P | 前の候補 |
 | CTRL+S | 編集中のパスをScanRule.iniに追加 |
+| CTRL+@ | -module:on/offのトグル |
 | ENTER | パス入力途中でENTERした時に補完候補一行目を実行 |
 
 
