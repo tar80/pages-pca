@@ -1,9 +1,9 @@
 ---
 layout: post
 title: fenrirscanを用いたパス補完
-version: PPx181+3以降
-date: 2021-11-28
-comment: selStr.js -> setSel.jsに変更。補完リストの読み込み方法を調整。
+version: PPx183以降
+date: 2022-02-19
+comment: moduleトグル用のキーバインドを追加
 categories: PPc
 ---
 ### 説明
@@ -34,9 +34,8 @@ PPc一行編集でのパス補完サポート。
 
 ### 使いかた
 補完の邪魔になることが多いので標準でEverything Search Moduleは不使用。
-有効にするには`-module:off`の箇所を`-module:on`に変更する。
+CTRL+@キーで使用をトグルできる。  
 
-<BR>
 ![sample]({{ site.baseurl }}{% link /public/img/complete_path.gif %})
 
 #### キーバインド
@@ -48,7 +47,6 @@ PPc
 | SHIFT+@ | 一行編集(反対窓を非アクティブで開く) |
 
 <BR>
-
 一行編集
 
 | KEY | COMMAND |
@@ -64,7 +62,7 @@ PPc
 
 #### 設定
 
-```clean
+```text
 ;エイリアス
 A_exec = {
 scr = ;スクリプト親ディレクトリパス
@@ -75,11 +73,11 @@ X_ltab = 0,2
 
 ;PPcキーバインド
 KC_main = {
-'@'    , *string o,path=%*input("%*name(DN,"%FDVN")" -title:"Jumppath.." -mode:e -k *editmode -allkey %%: *completelist -module:off -history:d %%: *mapkey use,K_liedMAP)
-         *jumppath %sgo"path"
-\V_HC0 , *string o,path=%*input("%*name(DN,"%FDVN")" -title:"Jumppath..OP" -mode:e -k *editmode -allkey %%: *completelist -module:off -history:d %%: *mapkey use,K_liedMAP)
+'@'    , *string o,path=%*input("%*name(DN,"%FDVN")" -title:"Jumppath.." -mode:e -k *editmode -allkey %%: *completelist -set -history:d %%: *mapkey use,K_liedMAP)
+         *jumppath %*name(DB,,%sgo'path')
+\V_HC0 , *string o,path=%*input("%*name(DN,"%FDVN")" -title:"Jumppath..OP" -mode:e -k *editmode -allkey %%: *completelist -set -history:d %%: *mapkey use,K_liedMap)
          *if 2 > %*js(PPx.Result=PPx.Pane.count;) %: *ppc -noactive -bootid:~ %sgo"path" %: *stop
-         *execute ~,*jumppath %sgo"path"
+         *execute ~,*jumppath %*name(DB,,%sgo'path')
 }
 ;一行編集キーバインド
 K_lied = {
@@ -91,18 +89,20 @@ K_lied = {
      %K"@END@TAB"
 ;    *script %'scr'%\setSel.js,"(.*\\(?!$))(.*)"
 ;     末尾選択状態にするなら↑コメントを外す
-^N = @DOWN
-^P = @UP
 }
 
 K_liedMAP = {
-ENTER , *string o,path=%*extract("%*edittext")
-        *ifmatch /^aux:.*/,%so"path" %: %K"@ENTER" %: *stop
-        *if 10==%*editprop(list)%*result(exists,%so"path") %: %K"@DOWN @ENTER" %: *stop
-        %K"@ENTER"
-F12   , %Oq *run -noactive -d:%0 fenrirScan.exe %& %Obd type %0%\PPXFPATH.TXT >> %0%\PPXUPATH.TXT %& *completelist /reload
-^S    , *linemessage [Add] %*edittext %: %Obd echo +%*edittext>> %0%\ScanRule.ini
+ENTER  , *string o,path=%*extract("%*edittext")
+         *ifmatch /^aux:.*/,%so"path" %: %K"@ENTER" %: *stop
+         *if 10==%*editprop(list)%*result(exists,%so"path") %: %K"@DOWN @ENTER" %: *stop
+         %K"@ENTER"
+F12    , %Oq *run -noactive -d:%0 fenrirScan.exe %& %Obd type %0%\PPXFPATH.TXT >> %0%\PPXUPATH.TXT %& *completelist /reload
+^S     , *linemessage [Add] %*edittext %: %Obd echo +%*edittext>> %0%\ScanRule.ini
+^V_HC0 , *if 0%se"module" %: *completelist -module:off %: *linemessage %: *string e,module= %: *stop
+         *completelist -module:on %: *linemessage module:on
+         *string e,module=1
 }
 ```
+  
 <BR>
 <script src="https://gist.github.com/tar80/bb366d370a8a25ee903b3163d42a82f1.js"></script>
