@@ -7,10 +7,14 @@ comment: moduleトグル用のキーバインドを追加
 categories: PPc
 ---
 ### 説明
+
 PPc一行編集でのパス補完サポート。
+
 - fenrirscan.exeで生成したパスリストを使ったインデックス検索。
+
   > - fenrirscan.exeはppc.exeのあるディレクトリに置いてください。
   > - パスリストにはPPXUPATH.TXTを使用。fenrirscan.exeで生成後、PPXFPATH.TXTの内容が追記されます。
+
 - キー操作でパスを昇降可能。
   > 上方への補完は[PPxをランチャとして使う⑦ステップイン・アウト](http://hoehoetukasa.blogspot.com/2018/11/ppx_7.html)を参考にさせて頂きました。
 - コマンドランチャのように入力途中でENTERしても補完。
@@ -22,23 +26,27 @@ PPc一行編集でのパス補完サポート。
   > 一行編集上にalt+移動候補キーが存在しない場合、X\_ltabの値に関わらず
   TAB補完が有効になるようです。普段はmigemo不使用(0,2)、一時的にmigemo使用(1,4-6)するような場合に
   以下のコマンドが利用できます。<BR>
-   ```
+   ```text
    *linecust ltab,K_lied:FIRSTEVENT,*setcust X_ltab=%*getcust(X_ltab) %%: *linecust ltab,K_lied:FIRSTEVENT,
    *setcust X_ltab=1,4
    ```
 
-> - コマンド内で[setSel.js]({{ site.baseurl }}{% post_url 20-12-26-script_setSel %})、[compCode.js]({{ site.baseurl }}{% post_url 20-12-22-script_compcode %})、[result.js]({{ site.baseurl }}{% post_url 20-12-18-script_result %})を使っています。
+> - コマンド内で[setSel.js]({{ site.baseurl }}{% post_url 20-12-26-script_setSel %})、
+[compCode.js]({{ site.baseurl }}{% post_url 20-12-22-script_compcode %})、
+[result.js]({{ site.baseurl }}{% post_url 20-12-18-script_result %})を使っています。
 > - X\_fdir=1, X\_flst≧3 ,X\_ltab≧1 で使うことを想定。
-> - コードをダウンロードして使う場合、fenrirscan.iniは文字コードを変換する
-  必要があります。元からあるiniファイルにコピペしたほうが楽かも。
+> - コードをダウンロードして使う場合、fenrirscan.iniは文字コードを変換する必要があります。
 
 ### 使いかた
+
 補完の邪魔になることが多いので標準でEverything Search Moduleは不使用。
 CTRL+@キーで使用をトグルできる。  
 
+<BR>
 ![sample]({{ site.baseurl }}{% link /public/img/complete_path.gif %})
 
 #### キーバインド
+
 PPc
 
 | KEY | COMMAND |

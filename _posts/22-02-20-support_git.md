@@ -3,7 +3,7 @@ layout: post
 title: nyagosとpecoを使ったgitコマンドのサポート
 version: PPx183以降
 date: 2022-02-20
-comment: 投稿。
+comment: 多数の不備があったので修正
 categories: PPc
 ---
 
@@ -32,7 +32,7 @@ gitリポジトリ内で使用でき、以下のような機能があります�
 コマンドを実行し、ブランチ名を選択して変更。
 
 - 引数が必須。第一引数に`%0%\`、第二引数に`%n`を指定。
-- %si"gitBranch%n"にブランチ名が設定される。
+- %si"gitBranch"にブランチ名が設定される。
 
 **git_stash.lua <opt\>**
 
@@ -62,7 +62,6 @@ gitリポジトリ内で使用でき、以下のような機能があります�
 > - コマンド内で、PPxWindowModuleを使用。
 > - コマンド内で、git,sed,pecoを使用。
 > - リポジトリの判別に[repoStat.js]({{ site.baseurl }}{% post_url 22-02-20-script_repoStat %})を使用。  
-コマンド内の`%*extract(C"%%si'repoRoot%n'")`を`%FD`に変更すればスクリプトは不要。
 > - git\_string\.luaでは、出力を一時的に`%si'git_string'`に格納しています。
 
 #### 設定
@@ -74,16 +73,16 @@ gitリポジトリ内で使用でき、以下のような機能があります�
 ; ※ppbw -c nyagos -c の部分はPPbのコンソールプロファイルを利用するための記述です。
 ;   nyagos -c でも構いません
 _Command  = {
-gitstring = %Osq *run -noppb -d:%*extract(C"%%si'repoRoot%n'") -pos:%*windowrect(,l),%*windowrect(,b) ppbw.exe -bootid:n -c nyagos -c mode 75,15&lua_f "path\to\git_string.lua" "%0%\" %*arg(1)
-            *insert %*extract(C%%si"git_string")
+gitstring = %Osq *run -noppb -d:%*extract(C"%%si'repoRoot'") -pos:%*windowrect(,l),%*windowrect(,b) ppbw.exe -bootid:n -c nyagos -c mode 75,15&lua_f "path\to\git_string.lua" "%0%\" %*arg(1)
+            *insert %*extract(C"%%si'git_string'")
             *execute C,*string i,git_string=
 }
 
 ; メニュー登録
-checkout branch     = %Oq *run -noppb -d:%*extract(C"%%si'repoRoot%n'") -pos:360,200 ppbw.exe -c nyagos -c mode 60,20&lua_f "path\to\git_checkout.lua" %0%\
+checkout branch     = %Oq *run -noppb -d:%*extract(C"%%si'repoRoot'") -pos:360,200 ppbw.exe -c nyagos -c mode 60,20&lua_f "path\to\git_checkout.lua" %0%\
 
-stash apply         = %Oq *run -noppb -d:%*extract(C"%%si'repoRoot%n'") -pos:360,200 ppbw -c nyagos -c mode 60,20&lua_f "path\to\git_stash.lua"
-stash apply --index = %Oq *run -noppb -d:%*extract(C"%%si'repoRoot%n'") -pos:360,200 ppbw -c nyagos -c mode 60,20&lua_f "path\to\git_stash.lua" "--index"
+stash apply         = %Oq *run -noppb -d:%*extract(C"%%si'repoRoot'") -pos:360,200 ppbw -c nyagos -c mode 60,20&lua_f "path\to\git_stash.lua"
+stash apply --index = %Oq *run -noppb -d:%*extract(C"%%si'repoRoot'") -pos:360,200 ppbw -c nyagos -c mode 60,20&lua_f "path\to\git_stash.lua" "--index"
 
 insert branch name  = *gitstring branch
 insert commit hash  = *gitstring commit
