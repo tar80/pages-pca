@@ -2,8 +2,8 @@
 layout: post
 title: nyagosとpecoを使ったgitコマンドのサポート
 version: PPx183以降
-date: 2022-02-20
-comment: 多数の不備があったので修正
+date: 2022-02-26
+comment: ユーザコマンド\*gitstring内でgitRootを取得するように変更
 categories: PPc
 ---
 
@@ -27,36 +27,39 @@ gitリポジトリ内で使用でき、以下のような機能があります�
 ![sample]({{ site.baseurl }}{% link /public/img/support_git.gif %})
 
 <BR>
-**git_checkout.lua "%0%\\" %n**
+**checkout branch**
 
 コマンドを実行し、ブランチ名を選択して変更。
 
-- 引数が必須。第一引数に`%0%\`、第二引数に`%n`を指定。
+- git\_checkout.luaは引数が必須。第一引数に`%0%\`、第二引数に`%n`を指定。
+- 自前でrepoStat\.jsを実行しません。
 - %si"gitBranch"にブランチ名が設定される。
 
-**git_stash.lua <opt\>**
+
+**stash apply**
 
 コマンドを実行し、スタッシュを選択して適用。
 
-- 第一引数にオプションを指定できる。`git_statsh.lua "--index"`
+- git\_stash\.luaは第一引数にオプションを指定できる。`git_stash.lua "--index"`
+- 自前でrepoStat\.jsを実行しません。
 
-**git_string.lua "%0%\\" branch**
+**insert branch name**
 
 一行編集上でコマンドを実行し、ブランチ名を選択して挿入。
 
-- 引数が必須。第一引数は`%0%\`、第二引数は`branch`
+- git\_string\.luaは引数が必須。第一引数は`%0%\`、第二引数は`branch`
 
-**git_string.lua "%0%\\" commit**
+**insert commit hash**
 
 一行編集上でコマンドを実行し、コミットを選択して挿入。
 
-- 引数が必須。第一引数は`%0%\`、第二引数は`commit`
+- git\_string\.luaは引数が必須。第一引数は`%0%\`、第二引数は`commit`
 
-**git_string.lua "%0%\\" stash**
+**insert stash number**
 
 一行編集上でコマンドを実行し、スタッシュを選択して挿入。
 
-- 引数が必須。第一引数は`%0%\`、第二引数は`stash`
+- git\_string\.luaは引数が必須。第一引数は`%0%\`、第二引数は`stash`
 
 > - nyagos、pecoはパスを通しておく必要あり。
 > - コマンド内で、PPxWindowModuleを使用。
@@ -73,9 +76,8 @@ gitリポジトリ内で使用でき、以下のような機能があります�
 ; ※ppbw -c nyagos -c の部分はPPbのコンソールプロファイルを利用するための記述です。
 ;   nyagos -c でも構いません
 _Command  = {
-gitstring = %Osq *run -noppb -d:%*extract(C"%%si'repoRoot'") -pos:%*windowrect(,l),%*windowrect(,b) ppbw.exe -bootid:n -c nyagos -c mode 75,15&lua_f "path\to\git_string.lua" "%0%\" %*arg(1)
-            *insert %*extract(C"%%si'git_string'")
-            *execute C,*string i,git_string=
+gitstring = *ifmatch 0,0%*extract(C"%%si'repoRoot'") %: *script %'scr'%\module\repoStat.js,1
+            %Osq *run -noppb -d:%*extract(C"%%si'repoRoot'") -pos:%*windowrect(,l),%*windowrect(,b) ppbw.exe -bootid:n -c nyagos -c mode 75,15&lua_f "path\to\git_string.lua" "%0%\" %*arg(1)
 }
 
 ; メニュー登録
@@ -85,8 +87,14 @@ stash apply         = %Oq *run -noppb -d:%*extract(C"%%si'repoRoot'") -pos:360,2
 stash apply --index = %Oq *run -noppb -d:%*extract(C"%%si'repoRoot'") -pos:360,200 ppbw -c nyagos -c mode 60,20&lua_f "path\to\git_stash.lua" "--index"
 
 insert branch name  = *gitstring branch
+                      *insert %*extract(C"%%si'git_string'")
+                      *execute C,*string i,git_string=
 insert commit hash  = *gitstring commit
+                      *insert %*extract(C"%%si'git_string'")
+                      *execute C,*string i,git_string=
 insert stash number = *gitstring stash
+                      *insert %*extract(C"%%si'git_string'")
+                      *execute C,*string i,git_string=
 ```
 
 <BR>
