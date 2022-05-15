@@ -46,7 +46,7 @@
   <div class="sidebar-item sidebar-nav">
     <ul class="nav">
       <li class="nav-title">Recent Updates</li>
-      {% for post in site.posts limit:5 %}
+      {% for post in site.posts limit:4 %}
         <li><a class="nav-item" href="{{ site.baseurl}}{{ post.url }}">{{ post.date | date: "%m/%d " }}{{ post.title  | truncate: 14 }}</a></li>
       {% endfor %}
     <ul>

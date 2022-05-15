@@ -8,8 +8,11 @@
     </span>
     <time class="post-date dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
       {%- assign date_format = site.date_format | default: "%Y/%m/%d" -%}
-      更新日: {{ page.date | date: date_format }} {{ page.comment }}
+      更新日: {{ page.date | date: date_format }} {{ page.comment }}<BR>
     </time>
+    <Span class="post-repository">
+      プラグイン: <a href=https://github.com/{{ page.repository }}>{{ page.repository }}</a><BR>
+    </span>
   </header>
 
   <div class="post-content">

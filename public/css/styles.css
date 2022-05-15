@@ -369,6 +369,11 @@ a.nav-item:hover {
   display: inline;
   width: 90px;
 }
+.post-repository {
+  font-family: "IBM Plex Serif", "Noto Serif JP";
+  color: #555;
+  font-size: 0.9em;
+}
 
 .gist * {
   font-size: 14px !important;
