@@ -4,7 +4,8 @@ title: PPeで簡易コード編集
 version: PPx181以降
 date: 2021-03-30
 comment: キーバインドを追加した。
-categories: PPe
+repository: tar80/ppm-edit
+categories: PPe @plugin
 ---
 ### 説明
 数行程度のちょっとしたコマンドマクロを作るときにあると便利なPPe設定集。

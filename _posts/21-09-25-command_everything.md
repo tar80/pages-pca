@@ -1,10 +1,11 @@
 ---
 layout: post
 title: Everythingと連携
-version: PPx182以降
-date: 2022-01-21
+version: PPx184以降
+date: 2022-04-29
 comment: ctrl+fでeverythingのoptionを指定したときにパスが取得出来ていなかったのを修正。
-categories: PPc
+repository: tar80/ppm-etp
+categories: PPc @plugin
 ---
 ### 説明
 [Everything](https://www.voidtools.com/)とPPxの連携について下記二通りの方法を説明しています。

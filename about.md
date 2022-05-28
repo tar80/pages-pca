@@ -8,7 +8,7 @@ TORO氏作のファイラ[Paper Plane xUI](http://toro.d.dooo.jp/slppx.html)の�
 winXP\_32bit(JScript)とwin10\_64bit(ES6)で動作確認しています。
 
 - カスタマイズは自己責任でお願いします。また必ずバックアップを取って下さい。  
-`%Odb *cd %0 %: *ppcust CD %0%\PPX_%*nowdatetime(y-N-D).CFG`
+`*ppcust CD %0%\PPX_%*now(date).CFG`
 - 全ての記事においてScriptModule(PPXSCR.DLL)R18は入っているものとして扱います。
 - スクリプトはJScriptとES6で記述していますが見える部分の違いはありません。ES6を使う場合は
 ファイル名から`_es6`の部分を除去し、`*setcust _Others:usejs9=4`を実行後

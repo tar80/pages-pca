@@ -1,10 +1,11 @@
 ---
 layout: post
 title: エコメニュー
-version: 182+4以降
-date: 2021-12-26
+version: 184以降
+date: 2022-04-29
 comment: 投稿。
-categories: PPc
+repository: tar80/ppm-switchmenu
+categories: PPc @plugin
 ---
 ### 説明
 たまにしか使わない複数のメニューをひとつにまとめる設定。<BR>
@@ -17,7 +18,9 @@ categories: PPc
   - 例`&1:sample = *setcust @sample.cfg`
 1. メニューから項目を選択すると、メニュー下部にアイテムが追加される。
 
-こんな感じ。※リアルタイムに変化するわけではありません。
+> プラグインは設定方法が異なります。ヘルプを参照してください。  
+
+こんな感じ。※リアルタイムに変化するわけではありません。  
 
 ![sample]({{ site.baseurl }}{% link /public/img/eco_menu1.png %})
 ![sample]({{ site.baseurl }}{% link /public/img/eco_menu2.png %})

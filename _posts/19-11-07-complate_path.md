@@ -1,10 +1,11 @@
 ---
 layout: post
 title: fenrirscanを用いたパス補完
-version: PPx183以降
-date: 2022-02-19
+version: PPx184以降
+date: 2022-04-29
 comment: moduleトグル用のキーバインドを追加
-categories: PPc
+repository: tar80/ppm-comppath
+categories: PPc @plugin
 ---
 ### 説明
 

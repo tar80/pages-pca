@@ -4,7 +4,8 @@ title: PPcustで設定編集
 version: PPx181以降
 date: 2021-11-23
 comment: ^\@のキーバインドを修正。popup.jsは不要になった。
-categories: PPcust
+repository: tar80/ppm-edit
+categories: PPcust @plugin
 ---
 
 ### 説明
