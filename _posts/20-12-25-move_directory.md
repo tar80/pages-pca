@@ -4,7 +4,8 @@ title: 同階層の隣合うディレクトリに移動
 version: PPx181以降
 date: 2021-11-21
 comment: 記事を書いた。
-categories: PPc
+repository: tar80/ppm-adjacentdir
+categories: PPc @plugin
 ---
 ### 説明
 親ディレクトリを経由せず、直接隣接するパスに移動するスクリプト。<BR>

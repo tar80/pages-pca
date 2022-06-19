@@ -4,7 +4,8 @@ title: PPxでGrep
 version: PPx183以降 KeyModuleR8以降
 date: 2022-02-26
 comment: git grep、vim quickfixを追加。
-categories: PPc
+repository: tar80/ppm-grep
+categories: PPc @plugin
 ---
 
 ### 説明
