@@ -4,7 +4,8 @@ title: ファイル振り分けモード
 version: PPx181以降
 date: 2021-12-22
 comment: "一時変数を_userからS_dividemodeに変更。ctrl+F5キーを調整"
-categories: PPc
+repository: tar80/ppm-switchmenu
+categories: PPc @plugin
 ---
 ### 説明
 1-5キーを使ってそれぞれdiv1-5ディレクトリにファイルを振り分けるモード設定。
