@@ -4,7 +4,7 @@ title: viキーバインド
 version: PPx185+6以降
 date: 2022-07-22
 comment: 投稿。
-repository: tar80/ppm-vilikeleys
+repository: tar80/ppm-vilikekeys
 categories: PPc @plugin
 ---
 ### 説明
