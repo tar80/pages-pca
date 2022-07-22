@@ -3,7 +3,7 @@ layout: post
 title: ファイル振り分けモード
 version: PPx181以降
 date: 2021-12-22
-comment: "一時変数を_userからS_dividemodeに変更。ctrl+F5キーを調整"
+comment: "一時変数を\_userからS\_dividemodeに変更。ctrl+F5キーを調整"
 repository: tar80/ppm-switchmenu
 categories: PPc @plugin
 ---
