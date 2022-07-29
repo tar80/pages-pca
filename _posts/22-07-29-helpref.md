@@ -5,7 +5,7 @@ version: PPx186以降
 date: 2022-07-29
 comment: 投稿。
 repository: tar80/ppm-misc
-categories: "@Plugin"
+categories: "@plugin"
 ---
 ### 説明
 
