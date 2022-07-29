@@ -4,7 +4,8 @@ title: マークとハイライトをトグル
 version: ppx181以降
 date: 2021-11-14
 comment: スクリプトを書き直した。
-categories: PPc
+repository: tar80/ppm-misc
+categories:  PPc @plugin
 ---
 ### 説明
 エントリの変更状態とハイライトの色番号を保持しつつマークとハイライトをトグルするスクリプト。
