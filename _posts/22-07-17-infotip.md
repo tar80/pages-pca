@@ -4,8 +4,8 @@ title: fileinfoをカスタマイズ
 version: PPx185
 date: 2022-07-17
 comment: 投稿。
-repository: 
-categories: PPc
+repository: tar80/ppm-misc
+categories: PPc @plugin
 ---
 
 ### 説明
