@@ -4,9 +4,12 @@ title: 状況に応じたファイル移動・コピー
 version: PPx181以降
 date: 2021-11-14
 comment: "cmdCopy.jsの第二引数に完了後ハイライト番号を指定可能にした。"
-categories: PPc
+repository: tar80/ppm-fileoperation
+categories: PPc @plugin
 ---
+
 ### 説明
+
 送り先ディレクトリ属性を考慮してファイルの移動とコピーを自動設定するスクリプト。
 - 反対窓があれば引数に応じて詳細or即実行、なければ詳細実行。初期選択パスはそれぞれ反対窓、%'work'。
 - 書庫内で実行した場合、7-zip64.dllを使用して選択ファイルを解凍。
