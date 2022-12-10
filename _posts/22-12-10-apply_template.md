@@ -4,7 +4,7 @@ title: 新規ファイルにテンプレートを適用
 version: PPx188以降
 date: 2022-12-10
 comment: 投稿。
-repository: ppm-edit
+repository: tar80/ppm-edit
 categories: PPc @plugin
 ---
 
