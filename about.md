@@ -22,7 +22,6 @@ winXP\_32bit(JScript)とwin10\_64bit(ES6)で動作確認しています。
 
 > これらのエイリアスはppx-plugin-managerでは使いません。
 
-<BR>
 ```text
 A_exec = {
 scr  =    ;スクリプトをまとめておくディレクトリパス
@@ -35,13 +34,13 @@ gvim =    ;gvim.exeのパス
 }
 ```
 
-####  PPx本体以外で使っているもの
+#### PPx本体以外で使っているもの
 
 - **PPxModule**
-  -  MessageModule
-  -  WindowModule
-  -  PositionModule
-  -  TextModule
+  - MessageModule
+  - WindowModule
+  - PositionModule
+  - TextModule
   - ScriptModule
   - KeyModule
   - EverythingSearchModule
@@ -72,13 +71,14 @@ gvim =    ;gvim.exeのパス
   - ripgrep [github](https://github.com/BurntSushi/ripgrep/releases)
   - jvgrep [github](https://github.com/mattn/jvgrep/releases)
   - colortool [github](https://github.com/microsoft/terminal/releases/tag/1904.29002)
+  - ffmpeg [ffmpeg.org](https://ffmpeg.org)
 
 - **外部ライブラリ**
   - migemo [kaoriya](https://www.kaoriya.net/software/cmigemo/) ローマ字検索
   - bregonig [k-takata](http://k-takata.o.oo7.jp/mysoft/bregonig.html) 正規表現
   - 7-zip64.dll,7z.dll [frostmoon](http://frostmoon.sakura.ne.jp/) 統合アーカイバ
 
-<BR>
-
 ---
-Powerd by [Jekyll](http://jekyllrb-ja.github.io/).The theme forked [monos](http://jekyllthemes.org/themes/monos/).The icons from [iconmonstr](https://iconmonstr.com/).Thank you.
+Powerd by [Jekyll](http://jekyllrb-ja.github.io/).
+The theme forked [monos](http://jekyllthemes.org/themes/monos/).
+The icons from [iconmonstr](https://iconmonstr.com/).
