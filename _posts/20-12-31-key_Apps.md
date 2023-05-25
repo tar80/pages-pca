@@ -6,17 +6,22 @@ date: 2021-11-06
 comment: sux用メニューを追加した。
 categories: PPc
 ---
+
 ### 説明
+
 現在のディレクトリ>カーソルエントリ拡張子に応じてメニューを作成するスクリプト。
+
 > - コマンド内(コメントアウト)で[result.js]({{ site.baseurl }}{% post_url 20-12-18-script_result %})、[7-zip64.dll]({{ site.baseurl }}http://frostmoon.sakura.ne.jp/7-zip32_ungarbled/)、[Reces]({{ site.baseurl }}http://frostmoon.sakura.ne.jp/reces/)、[Ralpha]({{ site.baseurl }}http://nilposoft.info/)を使っています。
-> - 文字操作にnkf,sedを使用。
+> - 文字操作に nkf,sed を使用。
 
 ### 使いかた
+
 - メニュー項目を好きなようにいじくる。
 - スクリプトの初期設定をする。
 - 右クリック。
 
 ### 設定
+
 ```clean
 ;エイリアス
 A_exec = {
@@ -47,15 +52,15 @@ Ext = ; タイプ別メニュー本体。この項目は消したらダメ。
 %G"JMTE|Text Edit"(&E)  = %"JMTE|Text edit"%Orib,editor %FDC
 PP&v    = %K"@N"
 %G"JMPV|Preview"(&I)    = *entrytip preview
---      = 
+--      =
 %G"JMCU|Cut"(&T)        = %K"@^X"
 %G"JMCL|Clip"(&L)       = %K"@^C"
 %G"JMPA|Paste"(&P)      = %K"@^V"
---      = 
+--      =
 %G"PJRB|To Recycle bin"(&D)     = %K"@D"
 %G"JMDE|Delete"(&Q)     = %K"\@D"
 %G"JMRE|Rename"(&A)     = %K"@R"
---      = 
+--      =
 %G"JMPR|Properties"(&R) = %z,properties
 }
 
@@ -179,5 +184,6 @@ Ext = ; タイプ別メニュー本体。この項目は消したらダメ。
 M_Chttp = {
 }
 ```
+
 <BR>
 <script src="https://gist.github.com/tar80/d0cd51d9dcb174d01a326ad5f2ec85f4.js"></script>
