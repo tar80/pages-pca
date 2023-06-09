@@ -38,13 +38,13 @@ gvim =    ;gvim.exeのパス
 
 - **PPxModule**
 
-  - MessageModule
-  - WindowModule
-  - PositionModule
-  - TextModule
-  - ScriptModule
-  - KeyModule
   - EverythingSearchModule
+  - KeyModule
+  - MessageModule
+  - PositionModule
+  - ScriptModule
+  - TextModule
+  - WindowModule
 
 - **外部ソフトウェア**
 
@@ -73,10 +73,12 @@ gvim =    ;gvim.exeのパス
 
   - colortool [github](https://github.com/microsoft/terminal/releases/tag/1904.29002)
   - ffmpeg [ffmpeg.org](https://ffmpeg.org)
+  - fzf [github](https://github.com/junegunn/fzf)
   - jvgrep [github](https://github.com/mattn/jvgrep/releases)
   - nkf [vector](https://www.vector.co.jp/soft/win95/util/se295331.html)
   - peco [github](https://github.com/peco/peco/releases)
   - ripgrep [github](https://github.com/BurntSushi/ripgrep/releases)
+  - zoxide [github](https://github.com/ajeetdsouza/zoxide)
 
 - **外部ライブラリ**
   - bregonig [k-takata](http://k-takata.o.oo7.jp/mysoft/bregonig.html) 正規表現

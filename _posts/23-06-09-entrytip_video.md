@@ -24,7 +24,7 @@ wmp(windows media player)では再生できない動画も割とあります。
 ### 使い方
 
 1. mpv をインストール
-2. 設定を適用し、対応する拡張子を持つエントリ上で`*entrytip preview`を実行  
+1. 設定を適用し、対応する拡張子を持つエントリ上で`*entrytip preview`を実行  
    またはコマンド`*entrytip preview -c %%Obd mpv.exe --wid=%%si'TipWnd' "%%si'TipTarget'"`を直接実行
 
 ![sample]({{ site.baseurl }}{% link /public/img/entrytip_video.webp %})
