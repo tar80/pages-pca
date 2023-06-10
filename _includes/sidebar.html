@@ -6,7 +6,7 @@
     </div>
     <p class="lead">{{ site.description }}</p>
     <p class="contact">
-    {%- include icon-github.html -%}{%- include icon-rss.html -%}{%- include icon-mail.html -%}
+    {%- include icon-github.html -%}{%- include icon-rss.html -%}{%- include icon-mail.html -%}<BR>
     </p>
   </div>
 
@@ -25,6 +25,9 @@
           {% endif %}
         {% endif %}
       {% endfor %}
+      <li>
+        <a class="nav-item" href="https://github.com/tar80/pages-pca/discussions">discussions</a>
+      </li>
     </ul>
   </div>
 
