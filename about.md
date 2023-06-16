@@ -5,14 +5,15 @@ permalink: /about/
 ---
 
 TORO 氏作のファイラ[Paper Plane xUI](http://toro.d.dooo.jp/slppx.html)のカスタマイズ記事を投稿しています。  
-winXP\_32bit(JScript)と win10\_64bit(ES6)で動作確認しています。
+winXP_32bit(JScript)と win10_64bit(ES6)で動作確認しています。
 
 - カスタマイズは自己責任でお願いします。また必ずバックアップを取って下さい。  
   `*ppcust CD %0%\PPX_%*now(date).CFG`
 - 全ての記事において ScriptModule(PPXSCR.DLL)R18 は入っているものとして扱います。
 - スクリプトは JScript と ES6 で記述していますが見える部分の違いはありません。ES6 を使う場合は
   ファイル名から`_es6`の部分を除去し、`*setcust _Others:usejs9=4`を実行後
-  再起動してください。また文字コードが utf-8 の場合は BOM を付けてください。[スクリプトのダウンロードヘルパー]({{ site.baseurl }}{% post_url 21-11-28-gist_download_helper %})も参考にしてください。
+  再起動してください。また文字コードが utf-8 の場合は BOM を付けてください。
+  [スクリプトのダウンロードヘルパー]({{ site.baseurl }}{% post_url 21-11-28-gist_download_helper %})も参考にしてください。
 - プラグイン形式でのカスタマイズ公開に向けて[ppx-plugin-manager](https://github.com/tar80/ppm)を作成中。  
   現在ベータテスト版を公開しています。
 
@@ -71,6 +72,7 @@ gvim =    ;gvim.exeのパス
     }
     ```
 
+  - bat [github](https://github.com/sharkdp/bat)
   - colortool [github](https://github.com/microsoft/terminal/releases/tag/1904.29002)
   - ffmpeg [ffmpeg.org](https://ffmpeg.org)
   - fzf [github](https://github.com/junegunn/fzf)

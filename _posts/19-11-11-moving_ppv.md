@@ -4,6 +4,7 @@ title: カーソル位置に応じてPPvを移動
 version: Px181以降
 date: 2021-11-20
 comment: 左右上下は止めて左右移動のみに変更した。
+repository: tar80/ppm-view
 categories: PPv
 ---
 ### 説明

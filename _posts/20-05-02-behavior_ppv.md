@@ -4,6 +4,7 @@ title: PPvの挙動を動的に変更
 version: PPx181以降
 date: 2021-11-20
 comment: スクリプトを書き直した。
+repository: tar80/ppm-view
 categories: PPv
 ---
 ### 説明

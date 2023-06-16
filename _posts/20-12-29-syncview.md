@@ -4,6 +4,7 @@ title: 窓数に合わせた連動ビューの制御
 version: PPx181以降
 date: 2021-11-20
 comment: コマンドを修正。スクリプトを書き直した。
+repository: tar80/ppm-view
 categories: PPv
 ---
 ### 説明
