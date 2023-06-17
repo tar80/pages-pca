@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 'AUX:Rclone'
+title: "AUX:Rclone"
 version: PPx181以降
 date: 2022-01-03
-comment: 'ログ取得中の通知メッセージを*jobコマンドに変更した。'
+comment: "ログ取得中の通知メッセージを*jobコマンドに変更した。"
 categories: PPc @AUX
 ---
 
@@ -69,7 +69,7 @@ PPc
 
 #### 設定
 
-```
+```clean
 A_exec = {
 scr  =  ;スクリプトをまとめておくディレクトリパス
 list =  ;読み書きするリストをまとめておくディレクトリパス
@@ -84,7 +84,8 @@ V , %Oq *execute ba,*job start %%: rclone cat %*regexp("%si"stragePath"%*addchar
 
 <BR>
 通常版
-```
+
+```clean
 S_auxRCLONE = {
 base    = aux://S_auxRCLONE/ %; remote:/path
 cmd     = rclone.exe
@@ -111,7 +112,8 @@ deldir  = *execute C,*logwindow "remdir %*path" %: %*cmd rmdir "%*path" %:
 ```
 <BR>
 スクリプト版
-```
+
+```clean
 S_auxRCLONE = {
 base    = aux://S_auxRCLONE/ %; remote:/path
 cmd     = rclone.exe
