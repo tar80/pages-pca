@@ -5,11 +5,11 @@ permalink: /about/
 ---
 
 TORO 氏作のファイラ[Paper Plane xUI](http://toro.d.dooo.jp/slppx.html)のカスタマイズ記事を投稿しています。  
-winXP_32bit(JScript)と win10_64bit(ES6)で動作確認しています。
+winXP_32bit(JScript5.7)と win10_64bit(ECMAScript6)で動作確認しています。
 
 - カスタマイズは自己責任でお願いします。また必ずバックアップを取って下さい。  
   `*ppcust CD %0%\PPX_%*now(date).CFG`
-- 全ての記事において ScriptModule(PPXSCR.DLL)R18 は入っているものとして扱います。
+- 全ての記事において ScriptModule(PPXSCR.DLL)R19 は導入済みとして扱われます。
 - スクリプトは JScript と ES6 で記述していますが見える部分の違いはありません。ES6 を使う場合は
   ファイル名から`_es6`の部分を除去し、`*setcust _Others:usejs9=4`を実行後
   再起動してください。また文字コードが utf-8 の場合は BOM を付けてください。
@@ -29,7 +29,7 @@ scr  =    ;スクリプトをまとめておくディレクトリパス
 cfg  =    ;PPxの設定ファイルをまとめておくディレクトリパス
 list =    ;読み書きするリストをまとめておくディレクトリパス
 work =    ;作業用のディレクトリパス
-myrepo =  ;gitレポジトリrootパス
+myrepo =  ;gitリポジトリrootパス
 reces =   ;reces.exeのパス
 gvim =    ;gvim.exeのパス
 }
@@ -55,8 +55,6 @@ gvim =    ;gvim.exeのパス
   - Mpv [mpv.io](https://mpv.io/) メディアプレイヤー
   - Nyagos [github](https://github.com/nyaosorg/nyagos/releases) コマンドラインシェル
   - Ralpha [nilposoft](http://nilposoft.info/) 画像処理
-  - Rclone [RCLONE](https://rclone.org/) オンラインストレージ操作
-  - Reces [frostmoon](http://frostmoon.sakura.ne.jp/) 書庫操作
   - Windows Terminal [github](https://github.com/microsoft/terminal/releases) 端末エミュレータ
 
 - **外部コマンド**
@@ -79,6 +77,8 @@ gvim =    ;gvim.exeのパス
   - jvgrep [github](https://github.com/mattn/jvgrep/releases)
   - nkf [vector](https://www.vector.co.jp/soft/win95/util/se295331.html)
   - peco [github](https://github.com/peco/peco/releases)
+  - rclone [RCLONE](https://rclone.org/)
+  - reces [frostmoon](http://frostmoon.sakura.ne.jp/)
   - ripgrep [github](https://github.com/BurntSushi/ripgrep/releases)
   - zoxide [github](https://github.com/ajeetdsouza/zoxide)
 
