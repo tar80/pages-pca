@@ -18,7 +18,7 @@ wmp(windows media player)では再生できない動画も割とあります。
 <BR><BR>
 
 > [mpv](https://mpv.io/)は [mplayer](http://www.mplayerhq.hu/design7/news.html) からフォークされた
-> CUI 上で動作するメディアプレイヤーです  
+> CUI 経由で動作するメディアプレイヤーです  
 > 軽快・高機能で様々な動画形式にネイティブ対応しています
 
 ### 使い方
