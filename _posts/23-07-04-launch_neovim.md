@@ -8,7 +8,7 @@ repository: tar80/ppm
 categories: PPc
 ---
 
-※最初に、この記事は Neovim の使用を勧めするものではありません。
+※最初に、この記事は Neovim の使用を勧めるものではありません。
 
 ### 説明
 
@@ -21,20 +21,19 @@ Alacritty や WezTerm でも流用できると思います。
 
 PPx から Neovim にパスを送るにはクライアントサーバーとして起動した Neovim にパスを送ります。  
 これ自体は仕組みを理解すれば難しいことではなく、予め Neovim を`--listen`オプション付きで起動して、  
-PPx から`--remote-send`オプションでパスを渡せばいいです。  
+PPx から`--server`を指定して`--remote-send`オプションでパスを渡せばいいです。  
 <BR>
-難しいのは Neovim が未起動の場合で、実際に PPx から WT 上の Neovim を起動するなら以下の手順になります。
+難しいのは Neovim が未起動の場合で、実際に PPx から WT 上の Neovim にパスを送るには次のような手順を要します。
 
 1. PPx から WT で Neovim を起動するコマンドを実行する
-2. WT が起動し Neovim が実行される
-3. PPx から Neovim にパスを送る
+1. WT 上の Neovim の起動を待って、PPx から Neovim にパスを送る
 
 ここでまず問題になるのが 1。  
 初回起動時なら WT にコマンドを送ればよいですが、すでに起動している場合は WT にコマンドを送ると
 新しい Neovim が開いてしまいます。WT は起動していて Neovim は未起動の場合もあるので、
-それぞれの状況に応じたコマンドを送らなければなりません。  
+単純に WT の起動状態によってコマンドを分岐するのは良い方法とは言えません。
 <BR>
-次に 3。PPx が Neovim の起動を検知する簡単な方法がありません。  
+次に 2。PPx が Neovim の起動を検知する簡単な方法がありません。  
 常に Neovim を起動していても開き直すことはあるでしょうから、ここを解決しないと手軽に連携できません。
 
 #### 解決法
@@ -48,7 +47,7 @@ ppx-plugin-manager の[lib\vbs\see_process.vbs](https://github.com/tar80/ppm/blo
 
 ※スクリプトを使用するには ppx-plugin-manager の導入が必要です。
 
-`see_process.vbs,1,2,3,4` 戻り値:{boolean} `0`false \| `-1`true
+`see_process.vbs,1,2,3,4` 戻り値:{number} スクリプト実行時のプロセス起動状態 `0`false \| `-1`true
 
 1. {string} 検知するプロセス名
 2. {number} 起動待機する時間(ミリ秒)
@@ -59,44 +58,44 @@ ppx-plugin-manager の[lib\vbs\see_process.vbs](https://github.com/tar80/ppm/blo
 
 `launch_neovim.js,1,2,3,4`
 
-1. {boolean} プロセスの起動状態 `0` \| `-1`
+1. {number} プロセスの起動状態 `0`false \| `-1`true
 2. {number} クライアントサーバーのポート番号(名前付きパイプ)
 3. {string} Neovim に送るオプションの種類 `edit` \| `args` \| `diff` \| `command`
    - edit: 単一エントリ
-   - args: 複数エントリ
+   - args: 複数エントリ(単一エントリを渡すと、内部でeditに変更される)
    - diff: vimdiff
-   - command: 4 で指定したコマンドを実行する
-4. {string} 直接指定するオプション
+   - command: 4 で指定したコマンドを実行
+4. {string} NeovimのExコマンドを直接指定
 
 ### 設定
 
 1. Neovim のクライアントサーバを設定  
    以下のどちらかの方法があります(`XXX` は任意の待受ポート番号)
 
-    - WT のプロファイルのコマンドラインで指定 `nvim.exe --listen "\\.\pipe\nvim.【XXX】.0"`
-    - init.lua に以下を追加
+   - WT のプロファイルのコマンドラインで指定 `nvim.exe --listen "\\.\pipe\nvim.【XXX】.0"`
+   - init.lua に以下を追加
 
-    ```lua
-    local pipe = [[\\.\pipe\nvim.【XXX】.0]]
-    local server = vim.v.servername
+   ```lua
+   local pipe = [[\\.\pipe\nvim.【XXX】.0]]
+   local server = vim.v.servername
 
-    if server then
-        if server ~= pipe then
-            local ok = pcall(vim.fn.serverstart, pipe)
-            if ok then
-                pcall(vim.fn.serverstop, server)
-            end
-        end
-    else
-        pcall(vim.fn.serverstart, pipe)
-    end
-    ```
+   if server then
+       if server ~= pipe then
+           local ok = pcall(vim.fn.serverstart, pipe)
+           if ok then
+               pcall(vim.fn.serverstop, server)
+           end
+       end
+   else
+       pcall(vim.fn.serverstart, pipe)
+   end
+   ```
 
 2. PPx の実行コマンド
-    ```text
-    *string o,proc=%*script(%*getcust(S_ppm#global:ppm)\lib\vbs\see_process.vbs,nvim.exe,9000,"wt -w 1 -p 【Neovimのプロファイル名】",3)
-    *script 【パス】\launch_neovim.js,%so'proc',【XXX】,【コマンド】
-    *focus #%*findwindowclass(cascadia_hosting_window_class)
-    ```
+   ```text
+   *string o,proc=%*script(%*getcust(S_ppm#global:ppm)\lib\vbs\see_process.vbs,nvim.exe,9000,"wt -w 1 -p 【Neovimのプロファイル名】",3)
+   *script 【パス】\launch_neovim.js,%so'proc',【XXX】,【コマンド】
+   *focus #%*findwindowclass(cascadia_hosting_window_class)
+   ```
 
 <script src="https://gist.github.com/tar80/c4542a656e9733271bffcba6bb5e7dac.js"></script>
