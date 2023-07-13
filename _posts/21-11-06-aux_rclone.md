@@ -1,21 +1,22 @@
 ---
 layout: post
-title: "AUX:Rclone"
-version: PPx181以降
-date: 2022-01-03
-comment: "ログ取得中の通知メッセージを*jobコマンドに変更した。"
+title: 'AUX:Rclone'
+version: PPx191+05以降
+date: 2023-07-13
+comment: プラグイン化
+repository: 'tar80/ppm-rclone'
 categories: PPc @AUX
 ---
 
 ### 説明
 
-aux:パス機能を用いて Rclone と連携するための設定。<BR>
+aux:パス機能を用いて Rclone と連携するための設定です。  
 公式[ppxaux06](http://toro.d.dooo.jp/slppx.html#ppxaux)をそのまま導入しても使えますが、ここではより便利に使うための設定を模索しています。
 
 <BR>
 <details><summary>Rcloneについて</summary><div>
   <ul>
-    <li>Rcloneはオンラインストレージを操作するためのコマンドラインツールです。<BR>
+    <li>Rcloneはオンラインストレージを操作するためのコマンドラインツールです。  
     有名どころのサービスは概ね対応していて、onedriveもgdriveもdropboxもamazon_S3も
     専用のアプリケーションは必要とせず、マウントする必要も無く、同様の操作で扱えます。
     </li>
@@ -26,121 +27,47 @@ aux:パス機能を用いて Rclone と連携するための設定。<BR>
 </div></details>
 <BR>
 
-このカスタマイズは、aux: sample R6(ppxaux06)と比較すると以下のような特徴があります。
+ppm-rcloneは、aux: sample R6(ppxaux06)と比較すると以下のような特徴があります。
 
-- 設定ファイルの暗号化に対応。PPc 起動後の最初の読み込み時にパスワードを要求される。
-- オンラインストレージのルートパスより上層へ移動しようとしたときに
-  Rclone でローカルパスを開くのを抑制。
-- リストの生成は、通常生成とスクリプト経由生成の 2 パターン用意。<BR>
+- オンラインストレージのルートより上層へ移動すると`rclone listremotes`をドライブリストとして開く
+- リネーム、更新日時の変更、ストレージ間でのファイル操作に対応
+- `rclone config password`に対応。PPc 起動後の最初の aux:パス読み込み時にパスワード入力が必要  
+    ※PPxのパスワード認証機能はドライブリストと相性が悪かったため独自入力を使用
+- 非同期でリストを読み込むオプション(EcmaScriptのみ)
 
-  > スクリプト版は aux:パスの仕様上、実行時に一度リストを読み込み、更新後に再度読み込む処理をしています。
-  > また、仕様を逸した利用方法なので誤爆やエラーの可能性が大いにあります。
-  > PPx の更新によっては使えなくなることも考えられます。
-
-  | 実行状態               | 通常版                                                           | スクリプト版       |
-  | :--------------------- | :--------------------------------------------------------------- | :----------------- |
-  | list 実行時の PPc      | ロックされる                                                     | ロックされない     |
-  | overup 実行時          | リスト再読み込み                                                 | メッセージを表示   |
-  | PPb                    | 非表示                                                           | 最小化             |
-  | パスワードを間違えた時 | PPb や ls2lf のプロセスが残る<BR>※PPb 非表示をやめれば回避できる | PPc の再起動が必要 |
+  > 非同期読み込みでは aux:パスの仕様上、実行時に一度キャッシュを読み込み、
+  > 更新後に再度aux:パスを開き直す処理をしています。
+  > そのためプラグイン側のバグなどで読み込みが連続的に発生する可能性があります。  
+  > また、非同期読み込みはディレクトリの移動時にのみ実行されます。
+  > 非同期読み込み中に別のパスに移動しても、処理が更新されることはなく最初のパスの取得を続行します。  
+  > 個人的な好みなので安定している同期読み込みの利用を推奨します。
 
 > カスタマイズには PPxKeyModule と ls2lf\.exe(ppxaux06)が必要です。
 
 ### 使い方
 
-`*jumppath aux://S_auxRCLONE/(Rcloneの設定名):`または`%K"@^L"`などでパスに移動。<BR>
+- ppm-rclone をインストールして設定する
+- `*jumppath aux://S_auxRCLONE/(Rcloneの設定名):`または`%K"@\L"`などでパスに移動
 
-> aux:パスを開く時に%si"RootPath",%si"stragePath",Rclone 用キーバインドが設定され、
-> 閉じるときに削除されます。
+動作例(非同期読み込み)
+
+![sample]({{ site.baseurl }}{% link /public/img/aux_rclone.webp %})
+
 
 #### キーバインド
 
 PPc
 
-|   KEY   | COMMAND                       |
-| :-----: | :---------------------------- |
-|   @F5   | リスト更新                    |
-|   @BS   | 上層へ移動                    |
-|   @C    | コピー                        |
-|   @M    | 移動                          |
-|   @D    | 削除                          |
-| @CTRL+K | ディレクトリ作成              |
-|    V    | エントリを PPv 標準入力で開く |
+| KEY | COMMAND                                  |
+| :-- | :--------------------------------------- |
+| F5  | リスト更新                               |
+| R   | リネーム                                 |
+| C   | コピー                                   |
+| M   | 移動                                     |
+| D   | 削除                                     |
+| K   | ディレクトリ作成                         |
+| A   | タイムスタンプ(ファイル書き込み時刻)変更 |
+| V   | エントリを PPv 標準入力で開く            |
 
-#### 設定
-
-```clean
-A_exec = {
-scr  =  ;スクリプトをまとめておくディレクトリパス
-list =  ;読み書きするリストをまとめておくディレクトリパス
-}
-
-; 標準出力を使った直接表示。小さいファイルサイズのみ読み込める
-; ※ppxやrcloneのバージョン、使用するsusiePluginによっては画像の読み込みができないかもしれません
-K_rcloneMap = {
-V , %Oq *execute ba,*job start %%: rclone cat %*regexp("%si"stragePath"%*addchar(/)","/:\//:/")%R | %0ppvw %%& *job end
-}
-```
-
-<BR>
-通常版
-
-```clean
-S_auxRCLONE = {
-base    = aux://S_auxRCLONE/ %; remote:/path
-cmd     = rclone.exe
-lf      = %'list'%\rclone.xlf
-ls2lf   = %0%\auxcmd\ls2lf.exe
-setAux  = *execute %n,*string i,RootPath=aux://S_auxRCLONE/%*regexp("%*path","/^(.*:).*/$1/") %%: *string i,stragePath=%*path %%: *mapkey use,K_rcloneMap %:
-; パスワード不要なら一行目*ifmatch 0,0'RCLONE~の行全体を削除
-list    = *ifmatch 0,0%'RCLONE_CONFIG_PASS' %: %k"@TAB" %: *set RCLONE_CONFIG_PASS=%*pass
-          %*setAux
-          %Obd %*ls2lf -j "A:Attr,S:Size,W:ModTime,F:Name" %*lf rclone lsjson "%*path%*addchar(/)"
-          %*lf
-overup  = *string i,NewPath=%si"RootPath" %:
-leave   = *string i,stragePath= %: *mapkey delete,K_rcloneMap %:
-get     = *execute C,*logwindow "copy %*src" %: %*cmd copy "%*path%*addchar(/)%*src" "%*name(D,%*dest)" %:
-get-m   = *execute C,*logwindow "move %*src" %: %*cmd move "%*path%*addchar(/)%*src" "%*name(D,%*dest)" %:
-store   = *execute C,*logwindow "copy send %*path" %: %*cmd copy "%*src" "%*path%*addchar(/)" %:
-store-m = *execute C,*logwindow "move send %*path" %: %*cmd move "%*src" "%*path%*addchar(/)" %:
-copy    = *execute C,*logwindow "copy %*src send %*dest" %: %*cmd copy "%*path%*addchar(/)%*src" "%*dest" %:
-move    = *execute C,*logwindow "move %*src send %*dest" %: %*cmd move "%*path%*addchar(/)%*src" "%*dest" %:
-makedir = *execute C,*logwindow "makedir %*path" %: %*cmd mkdir "%*path" %:
-del     = *execute C,*logwindow "delete %*path" %: %*cmd delete "%*path" %:
-deldir  = *execute C,*logwindow "remdir %*path" %: %*cmd rmdir "%*path" %:
-}
-```
-<BR>
-スクリプト版
-
-```clean
-S_auxRCLONE = {
-base    = aux://S_auxRCLONE/ %; remote:/path
-cmd     = rclone.exe
-lf      = %'list'%\rclone.xlf
-ls2lf   = %0%\auxcmd\ls2lf.exe
-code    = %'scr'%\aux_main.js
-setAux  = *execute %n,*string i,RootPath=aux://S_auxRCLONE/%*regexp("%*path","/^(.*:).*/$1/") %%: *string i,stragePath=%*path %%: *mapkey use,K_rcloneMap %:
-; パスワード不要なら三行目*ifmatch 0,0'RCLONE~の行全体を削除
-list    = *if 0%sp"runJsAuxMain" %: *stop 0==0%si"within" ;スクリプト二重実行の防止
-          *if %*keystate(226)%*keystate(220)%*keystate(116)%*keystate(13)%*keystate(9)%*keystate(8) %: *string i,auxID=%n ;特定キー押下時リスト更新フラグ keystate=226:\_, 220:\|, 116:F5, 13:ENTER, 9:TAB, 8:BS
-          *ifmatch 0,0%'RCLONE_CONFIG_PASS' %: %k"@TAB" %: *set RCLONE_CONFIG_PASS=%*pass
-          *ifmatch !0,0%si"auxID" %: *script %*code,rclone,%*lf,%*path,0,%si"auxID"
-          %*setAux
-          *string i,auxID= %: *string i,within= %: %*lf
-overup  = *string i,NewPath=%si"RootPath" %: *linemessage !"<<root>> %: *wait 1000,2 %:
-leave   = *string i,stragePath= %: *mapkey delete,K_rcloneMap %:
-get     = *string i,auxID=%n %: *execute C,*logwindow "copy %*src" %: %*cmd copy "%*path%*addchar(/)%*src" "%*name(D,%*dest)" %:
-get-m   = *string i,auxID=%n %: *execute C,*logwindow "move %*src" %: %*cmd move "%*path%*addchar(/)%*src" "%*name(D,%*dest)" %:
-store   = *string i,auxID=%~n %: *execute C,*logwindow "copy %*src send %*path" %: %*cmd copy "%*src" "%*path%*addchar(/)" %:
-store-m = *string i,auxID=%~n %: *execute C,*logwindow "move %*src send %*path" %: %*cmd move "%*src" "%*path%*addchar(/)" %:
-copy    = *string i,auxID=%n %: *string i,within=1 %: *execute C,*logwindow "copy %*src send %*dest" %: %*cmd copy "%*path%*addchar(/)%*src" "%*dest" %:
-move    = *string i,auxID=%n %: *string i,within=1 %: *execute C,*logwindow "move %*src send %*dest" %: %*cmd move "%*path%*addchar(/)%*src" "%*dest" %:
-makedir = *string i,auxID=%n %: *execute C,*logwindow "makedir %*path" %: %*cmd mkdir "%*path" %:
-del     = *string i,auxID=%n %: *execute C,*logwindow "delete %*path" %: %*cmd delete "%*path" %:
-deldir  = *string i,auxID=%n %: *execute C,*logwindow "remdir %*path" %: %*cmd rmdir "%*path" %:
-}
-```
-
-<BR>
-<script src="https://gist.github.com/tar80/9b66e4ec4e17a4551fb35a9d7b08c172.js"></script>
+> - `A`はDropboxでエラーになりました。ストレージによって使えない場合があるようです。
+> - `V`キーはファイルサイズの小さい文書用です。一応、画像も開けます。
