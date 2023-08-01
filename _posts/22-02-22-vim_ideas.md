@@ -2,8 +2,8 @@
 layout: post
 title: PPxとvimの連携
 version: PPx183以降
-date: 2022-02-26
-comment: 投稿
+date: 2023-08-01
+comment: vim-quickrunの項目を追加
 categories: PPc
 ---
 
@@ -20,6 +20,7 @@ PPxとvimの連携についてのアイデア集。
   - PPx設定ファイル(PPxcfg)をハイライト表示
   - 編集中のPPx設定ファイルをPPxに適用
   - 編集中のスクリプトをPPxで実行
+  - 編集中のスクリプトをQuickRunで実行
 
 前提として、PPcの`KC_main:Firstevent`に`*set PPX_DIR=%*name(DC,'%0')`を追加しておきます。  
 これは起動中のPPxのインストールディレクトリを一時的に環境変数へ追加するための設定で、
@@ -34,23 +35,19 @@ PPxとvimの連携についてのアイデア集。
 しかし、これでは毎回gvimのパスを入力する必要があるので、連携を取り易くするため
 エイリアスにパスを追加します。
 
-<BR>
 ```text
 A_exec  = {
 gvim = path\to\gvim.exe
 }
 ```
 
-<BR>
 これで`gvim %R`、または`%g'gvim' %R`でパスを送れるようになりました。  
 最初からパスが通っていれば、この設定は不要です。  
 
-<BR>
 続けて、必須ではありませんがエディタ用の拡張子判別を作ります。  
 以下のようなメニューを作っておけば、ファイルの拡張子に応じてエディタへ送るパスが振り分けられます。  
 `%ME_editor`するとマーク、カーソル下エントリに対する拡張子判別が実行されます。
 
-<BR>
 ```text
 E_editor  = {
 :7Z     , *linemessage !"編集できません
@@ -68,7 +65,6 @@ TXT     , *ppe %R
 }
 ```
 
-<BR>
 #### PPxで選択したパスに対するgrep結果をquickfixで開く
 
 [cmdGrep.js]({{ site.baseurl }}{% post_url 21-03-07-command_Grep %})を使います。  
@@ -76,7 +72,6 @@ TXT     , *ppe %R
 quickfixで開かれます。タブで開く処理が面倒だったので常に新規窓で開くようになっています。
 また、スクリプト内で窓位置とサイズ調整をしています。
 
-<BR>
 ![sample]({{ site.baseurl }}{% link /public/img/vim_grep_qf.gif %})
 
 #### PPxで選択した2ファイル間の差分を開く
@@ -88,14 +83,11 @@ vimdiffを使いますが、標準では差分が見難いので表示を調整�
 自分好みに変えてしまいましょう。ハイライトの自作なんて大変そうと思うかも知れませんが、
 vimがdiffに使うハイライトは4つだけです。colorschemeを自作するよりは簡単です。  
 
-  <BR>
   ![sample]({{ site.baseurl }}{% link /public/img/vim_diff_highlight.jpg %})
 
-  <BR>
   画像のハイライト設定を置いておくので自分好みに調整してみてください。  
   できあがった設定をvimrc内のcolorscheme設定の後に記述すればハイライトを上書きできます。
 
-  <BR>
   ```vim
   hi DiffAdd guifg=#81b5c3 ctermfg=109 guibg=#092532 ctermbg=235 gui=NONE cterm=NONE
   hi DiffChange guifg=#6c806f ctermfg=243 guibg=#20331d ctermbg=234 gui=NONE cterm=NONE
@@ -103,13 +95,11 @@ vimがdiffに使うハイライトは4つだけです。colorschemeを自作す�
   hi DiffText guifg=#9ece6e ctermfg=149 guibg=#2d4d19 ctermbg=236 gui=NONE cterm=NONE
   ```
 
-<BR>
 - 長文の折り返し  
   vimdiffはnowrapしていると長文の差分表示までのカーソル移動が面倒で、wrapしていると
   差分がずれて判り難いという厄介なところがありますが、これにはwrap状態のトグルコマンドを作って対応します。  
   単純な関数なので二分割でないと上手く動きませんが、差分を見るだけなら十分使えると思います。
 
-  <BR>
   ```vim
   function! s:SetWrap() abort
     let l:wrap_state = &wrap ? 'nowrap' : 'wrap'
@@ -123,10 +113,8 @@ vimがdiffに使うハイライトは4つだけです。colorschemeを自作す�
   noremap <silent> <F12> <Cmd>call <SID>SetWrap()<CR>
   ```
 
-<BR>
 vim側の設定ができたらPPxの設定をして差分をvimに送れるようにしましょう。
 
-<BR>
 ```text
 &Diff = %ORx *string o,path=%FDCN %: *string o,pairpath=%~FDCN
         *if 2==%*js(PPx.Result = PPx.EntryMarkCount;) %: *string o,pairpath=%*regexp("%#;FDCN","s/.+;(.+)/$1/")
@@ -152,7 +140,6 @@ filetypeがPPxcfgに設定されハイライトが適用されます。標準の
 vimで設定ファイルを編集できてもPPx側で読み込まなければ変更は適用されません。非同期で`PPcust CA`して変更を適用できるようにしましょう。  
 filetype=PPxcfgでのみコマンドが有効になるようにしてあるので、vim-PPxcfgを導入しない場合はコマンドを書き換えてください。  
 
-<BR>
 ```vim
 function! s:LoadPPxcfg() abort
   if &filetype !=# 'PPxcfg'
@@ -169,18 +156,73 @@ if has('gui_running')
   nnoremap <expr> <C-F9> <SID>LoadPPxcfg()
 endif
 ```
+
 #### 編集中のスクリプトをPPxで実行
 
 スクリプトを書いているとテスト試行したくなることがあります。  
 コマンドラインから下のコードを実行すると編集中のファイルをpptray経由で実行できます。  
 
-<BR>
-```javascript
+```vim
 execute "!start" $PPX_DIR."\\pptrayw.exe -c *script %"
 ```
 
-<BR>
 このコマンドは非表示で実行されるため、エラーがわからなかったり無限ループがバックグラウンドで
 実行され続ける可能性があります。  
 そういったトラブルを避けるにはpptrayの部分をppbに書き換えて実行してください。
 
+#### 編集中のスクリプトをQuickRunで実行
+
+いまさらですがvim-quickrunを使い始めたのでPPxScriptの設定をしてみました。PPXTEXT.DLLを使用します。  
+`command`にはppbのフルパスを指定するか、環境変数`PPX_DIR`が設定してあれば`exec`に`${PPX_DIR}/%c`の
+ように書けます。
+
+<BR>
+vimscript
+```vim
+" let g:quickrun_config.javascript = { type = 'ppx' }
+let g:quickrun_config.ppx = {
+      \ 'command': 'ppbw',
+      \ 'cmdopt': '-c *stdout',
+      \ 'exec': ['%c %o %%*script(%S)'],
+      \ }
+```
+
+<BR>
+lua
+```lua
+-- vim.g.quickrun_config.javascript = { type = 'ppx'}
+vim.g.quickrun_config.ppx = {
+    command = 'ppbw',
+    cmdopt = '-c *stdout',
+    exec = { '%c %o %%*script(%S)' }
+}
+```
+
+<BR>
+ついでに、私の環境ではNeovimで選択範囲の実行に`:QuickRun -mode v`
+を使うとエラーが出ることがあったのでこのようなキーを設定しています。
+
+```lua
+vim.keymap.set({ 'n', 'v' }, 'mq', function()
+  local prefix = ''
+  local mode = vim.api.nvim_get_mode().mode
+
+  if mode:find('^[vV\x16]') then
+    local s = vim.fn.line('v')
+    local e = vim.api.nvim_win_get_cursor(0)[1]
+
+    if (s > e) then
+      s, e = e, s
+    end
+
+    prefix = string.format('%s,%s', s, e)
+  end
+
+  vim.cmd(string.format('%sQuickRun', prefix))
+end, {})
+```
+
+<BR>
+試行の度にあっちこっち移動しなくていいのでとても快適。
+
+![sample]({{ site.baseurl }}{% link /public/img/vim_quickrun.webp %})
