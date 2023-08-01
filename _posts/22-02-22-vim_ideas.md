@@ -2,8 +2,8 @@
 layout: post
 title: PPxとvimの連携
 version: PPx183以降
-date: 2023-08-01
-comment: vim-quickrunの項目を追加
+date: 2023-08-02
+comment: vim-quickrunの項目の誤りを修正
 categories: PPc
 ---
 
@@ -176,10 +176,18 @@ execute "!start" $PPX_DIR."\\pptrayw.exe -c *script %"
 `command`にはppbのフルパスを指定するか、環境変数`PPX_DIR`が設定してあれば`exec`に`${PPX_DIR}/%c`の
 ように書けます。
 
+> 設定に誤りがあったので修正しました。  
+> よくわかっていないのですが、`type`を`ppx`にして`javascript = {type = 'ppx'}`
+> を設定すると無限ループになってしまうので、
+>
+> - `javascript = {type = 'ppx'}`は設定せずに`QuickRun ppx` として実行する
+> - `type`を`javascript`として標準の設定にしてしまう
+> の二通りの記述を置いておきます。  
+
 <BR>
 vimscript
 ```vim
-" let g:quickrun_config.javascript = { type = 'ppx' }
+" let g:quickrun_config.javascript = {
 let g:quickrun_config.ppx = {
       \ 'command': 'ppbw',
       \ 'cmdopt': '-c *stdout',
@@ -190,7 +198,7 @@ let g:quickrun_config.ppx = {
 <BR>
 lua
 ```lua
--- vim.g.quickrun_config.javascript = { type = 'ppx'}
+-- vim.g.quickrun_config.javascript = {
 vim.g.quickrun_config.ppx = {
     command = 'ppbw',
     cmdopt = '-c *stdout',
