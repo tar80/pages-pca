@@ -2,8 +2,8 @@
 layout: post
 title: PPxとvimの連携
 version: PPx183以降
-date: 2023-08-01
-comment: vim-quickrunの項目の誤りを修正
+date: 2023-08-03
+comment: vim-quickrunの項目の誤りをさらに修正
 categories: PPc
 ---
 
@@ -177,25 +177,27 @@ execute "!start" $PPX_DIR."\\pptrayw.exe -c *script %"
 ように書けます。
 
 > 設定に誤りがあったので修正しました。  
-> typeを`ppx`にして`javascript = {type = 'ppx'}`を設定すると無限ループになってしまうので、
+> ~~typeを`ppx`にして`javascript = {type = 'ppx'}`を設定すると無限ループになってしまうので、~~
 >
-> - typeを`javascript`として標準の設定にしてしまう
-> - typeを`ppx`として、`javascript = {type = 'ppx'}`は設定せずに`QuickRun ppx` として実行する
+> ~~- typeを`javascript`として標準の設定にしてしまう~~
+> ~~- typeを`ppx`として、`javascript = {type = 'ppx'}`は設定せずに`QuickRun ppx` として実行する~~
 >
-> の二通りの記述を置いておきます。  
-> typeを`javascript`にする場合は、設定内の`type`を削除します。  
-> typeを`ppx`にする場合は、`type`に`javascript`を設定しておかないとppxがスクリプトの種類を  
-> 認識できずVBScriptとして実行されてしまいます。これはファイル頭にシバン`//!*script`があれば  
-> 防げますが、範囲選択をするときには防げません。
+> ~~の二通りの記述を置いておきます。~~  
+> ~~typeを`javascript`にする場合は、設定内の`type`を削除します。~~  
+> ~~typeを`ppx`にする場合は、`type`に`javascript`を設定しておかないとppxがスクリプトの種類を~~  
+> ~~認識できずVBScriptとして実行されてしまいます。これはファイル頭にシバン`//!*script`があれば~~  
+> ~~防げますが、範囲選択をするときには防げません。~~  
+> QuickRunの理解が足りなかったために迂遠な設定をしていました。  
+> デフォルトに設定したいときはコメントを外せばOK。
 
 <BR>
 vimscript
 ```vim
-" let g:quickrun_config.javascript = {
+" let g:quickrun_config.javascript = { 'type': 'ppx' }
 let g:quickrun_config.ppx = {
-      \ 'type': 'javascript',
       \ 'command': 'ppbw',
       \ 'cmdopt': '-c *stdout',
+      \ 'tempfile': '%{tempname()}.js',
       \ 'exec': ['%c %o %%*script(%S)'],
       \ }
 ```
@@ -203,11 +205,11 @@ let g:quickrun_config.ppx = {
 <BR>
 lua
 ```lua
--- vim.g.quickrun_config.javascript = {
+-- vim.g.javascript = {type = 'ppx' }
 vim.g.quickrun_config.ppx = {
-    type = 'javascript',
     command = 'ppbw',
     cmdopt = '-c *stdout',
+    tempfile = '%{tempname()}.js',
     exec = { '%c %o %%*script(%S)' }
 }
 ```
