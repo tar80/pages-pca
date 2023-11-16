@@ -2,7 +2,7 @@
 layout: post
 title: PPxスクリプトの覚書
 version: PPXSCR21,PPXCV8R3以降
-date: 2023-11-05
+date: 2023-11-16
 comment: 追記。JScriptとCV8モジュールの差異
 categories: Script
 ---
@@ -86,5 +86,13 @@ Extract系で差が出ていると推測される。
   たとえば、`ADODB.Stream`の`.Type`、`.LineSeparator`などのプロパティ値や、  
   メソッドの第二引数を指定するとエラーになる場合がある。
 
-- JScriptでは`PPx.result`の後に`PPx.Quit()`があっても値は返されるが、
+- JScriptでは`PPx.result`の後に`PPx.Quit()`があっても値は返されるが、  
   CV8では値は返されずに終了する。
+
+- CV8では、try文内でfso.CreatTextFile()関数を用いてファイルを生成したときに、  
+  ファイル生成に成功した場合でも例外エラーが発生する。
+
+- CV8では、`PPx.result`の値がbooleanのとき、`"True"` `"False"`が戻り値となる。  
+  (ScriptModuleでは、`"-1"` `"0"`)
+
+- CV8では、PPx.Echo(1, 2)のように複数の引数を持たせるとエラーになる。

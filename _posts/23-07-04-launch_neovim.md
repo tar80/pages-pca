@@ -1,27 +1,26 @@
 ---
 layout: post
 title: PPxとNeovimの連携
-version: PPx191以降
-date: 2023-07-04
-comment: 投稿。
+version: PPx193以降
+date: 2023-11-16
+comment: 改稿。スクリプトを更新。
 repository: tar80/ppm
-categories: PPc
+categories: PPc Script
 ---
 
 ※最初に、この記事は Neovim の使用を勧めるものではありません。
 
 ### 説明
 
-PPx と GUI の Neovim の連携は Gvim とそれほど変わらないと思いますが、
 ターミナルエミュレータ + Neovim との連携は困難なので一例として紹介します。
 今回は Neovim の側として WindowsTerminal(WT) で説明しています。試していませんが
 Alacritty や WezTerm でも流用できると思います。
 
 #### PPx とターミナル上の Neovim の連携が困難である理由
 
-PPx から Neovim にパスを送るにはクライアントサーバーとして起動した Neovim にパスを送ります。  
-これ自体は仕組みを理解すれば難しいことではなく、予め Neovim を`--listen`オプション付きで起動して、  
-PPx から`--server`を指定して`--remote-send`オプションでパスを渡せばいいです。  
+PPx から Neovim にパスを送るにはクライアントサーバとして起動した Neovim にパスを送ります。  
+これ自体はしくみを理解すれば難しいことではなく、あらかじめ Neovim を`--listen`オプション付きで起動して、  
+PPx から`--server`を指定して`--remote-send`オプションでパスを渡せばよいです。  
 <BR>
 難しいのは Neovim が未起動の場合で、実際に PPx から WT 上の Neovim にパスを送るには次のような手順を要します。
 
@@ -39,16 +38,14 @@ PPx が Neovim の起動を検知する簡単な方法がありません。
 
 #### 解決法
 
-ppx-plugin-manager の[lib\vbs\see_process.vbs](https://github.com/tar80/ppm/blob/main/lib/vbs/see_process.vbs)を利用します。  
-このスクリプトを使えば Neovim の起動状態を検知してコマンドを実行できるので 1・2 ともに解決します。  
-ただ、未起動と起動している状態、単一エントリと複数エントリ、diff など、
-送る状態によってオプションを変える必要があるため、それ用のスクリプトも下に用意しました。es6 版のみになります。
+seeProcess.jsを利用します。このスクリプトを使えば Neovim の起動状態を検知して  
+コマンドを実行できるので 1・2 ともに解決します。  
+Neovimの起動にはlaunchNeovim.jsを利用します。起動状態、単一エントリと複数エントリ、  
+vimdiff などのオプションを調整してNeovimを起動します。  
 
 ### 使い方
 
-※スクリプトを使用するには ppx-plugin-manager の導入が必要です。
-
-`see_process.vbs,1,2,3,4` 戻り値:{number} スクリプト実行時のプロセス起動状態 `0`false \| `-1`true
+`seeProcess.js,1,2,3,4` 戻り値:{number} スクリプト実行時のプロセス起動状態 `0`false \| `-1`true
 
 1. {string} 検知するプロセス名
 2. {number} 起動待機する時間(ミリ秒)
@@ -57,16 +54,22 @@ ppx-plugin-manager の[lib\vbs\see_process.vbs](https://github.com/tar80/ppm/blo
 
 <BR>
 
-`launch_neovim.js,1,2,3,4`
+`launchNeovim.js,1,2,3,4`
 
 1. {number} プロセスの起動状態 `0`false \| `-1`true
-2. {number} クライアントサーバーのポート番号(名前付きパイプ)
+2. {number} クライアントサーバのポート番号(名前付きパイプ)
 3. {string} Neovim に送るオプションの種類 `edit` \| `args` \| `diff` \| `command`
    - edit: 単一エントリ
    - args: 複数エントリ(単一エントリを渡すと、内部でeditに変更される)
    - diff: vimdiff
-   - command: 4 で指定したコマンドを実行
-4. {string} NeovimのExコマンドを直接指定
+   - command: `4.`で指定したコマンドを実行
+4. {string} NeovimのExコマンドを直接指定  
+    `3.`がコマンド以外のときは引数としてパスを渡せる。パス区切りは`;`を挟む  
+    また、空白を含むパスであっても`"`で括ってはならない
+
+> vimdiff はデフォルトではマークファイルを対象にしますが、4.に`;`区切りのパスが  
+> 指定されていれば、そちらを対象にします。パス区切りに空白を使うこともできますが、  
+> 空白を含むパスを正しく取得できない可能性があります。
 
 ### 設定
 
@@ -94,9 +97,13 @@ ppx-plugin-manager の[lib\vbs\see_process.vbs](https://github.com/tar80/ppm/blo
 
 2. PPx の実行コマンド
    ```text
-   *string o,proc=%*script(%*getcust(S_ppm#global:ppm)\lib\vbs\see_process.vbs,nvim.exe,9000,"wt -w 1 -p 【Neovimのプロファイル名】",3)
-   *script 【パス】\launch_neovim.js,%so'proc',【XXX】,【コマンド】
+   *string o,proc=%*script(path\to\seeProcess.js,nvim.exe,9000,"wt -w 1 -p 【Neovimのプロファイル名】",3)
+   *script path\to\launchNeovim.js,%so'proc',【XXX】,【オプション種類】【,exコマンド or 対象パス】
    *focus #%*findwindowclass(cascadia_hosting_window_class)
    ```
+
+以前はppmの導入が必要でしたがスクリプトだけで動くように調整しました。  
+JScript,CV8 どのライブラリでも動作すると思いますが、ファイル内で日本語を使っているため  
+BOM付きUTF-8で保存しないと使えません。  
 
 <script src="https://gist.github.com/tar80/c4542a656e9733271bffcba6bb5e7dac.js"></script>
