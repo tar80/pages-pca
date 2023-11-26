@@ -1,78 +1,44 @@
 ---
 layout: post
 title: ファイル振り分けモード
-version: PPx181以降
-date: 2021-12-22
-comment: "一時変数を\_userからS\_dividemodeに変更。ctrl+F5キーを調整"
+version: PPx196, ppm0.93以降
+date: 2023-11-26
+comment: DivideModeからSortModeへと更新
 repository: tar80/ppm-switchmenu
 categories: PPc @plugin
 ---
+
 ### 説明
-1-5キーを使ってそれぞれdiv1-5ディレクトリにファイルを振り分けるモード設定。
-- div1-5ディレクトリはモード起動時のディレクトリ（S\_dividemode:base）に自動的に作成。
+
+1-5キーを使ってそれぞれsort1-5ディレクトリにファイルを振り分けるモード設定。
+
+- sort1-5ディレクトリはモード起動時のディレクトリに自動的に作成されます。
 - モード終了時に使用キーは元の設定に戻ります。
 
-> - %'cfg'にzz1DivideMode.cfgを配置する必要があります。
-> - キー設定の変更に[exchangeKeys.js]({{ site.baseurl }}{% post_url 21-03-09-script_exchangeKeys %})を使っています。<BR>
-> key moduleを導入している場合は、該当箇所を\*mapkeyで置き換えればスクリプトは不要です。
+### 使い方
 
-
-### 使いかた
-- ユーザーコマンド`*DivideMode`で起動。
+- SwitchMenuを呼び出し、`2:SortMode`を選択する。
 - 1-5キーを押下してファイルを振り分ける。
+- スイッチメニューからディレクトリの名称を変更することもできます。  
+  ※設定したディレクトリ名は次回に引き継がれない一時的な名称です。
 - ESCで終了。
 
+> SortMode実行中は背景色が変更されます。PPxDirectWrite版の場合は、  
+> 終了後も背景色が一部戻らないことがありますが、表示を更新すれば戻ります。
+
+細かな挙動を調整したいときは、SwitchMenuから`1:ppm` > `編集` > `プリセットメニュー設定ファイル` > `sort.cfg`  
+を選択し、設定を編集します。
+
 ### キーバインド
+
 **PPc**
 
-| KEY | COMMAND          |
-|:---:|:-----------------|
-| 1 | ディレクトリ'div1'にファイルを送る。 |
-| 2 | ディレクトリ'div2'にファイルを送る。 |
-| 3 | ディレクトリ'div3'にファイルを送る。 |
-| 4 | ディレクトリ'div4'にファイルを送る。 |
-| 5 | ディレクトリ'div5'にファイルを送る。 |
-| ^F5 | div1-5の親ディレクトリをカレントディレクトリに変更 |
-| ESC  | モード終了。 |
-
-### 設定
-```
-;エイリアス
-A_exec = {
-cfg  =  ;PPxの設定ファイルをまとめておくディレクトリパス
-}
-
-;ユーザーコマンド
-_Command = {
-DivideMode = *script %'scr'%\exchangeKeys.js,1,%'cfg'%\zz1DivideMode.cfg
-             *setcust S_dividemode:base=%*name(DPN,%FDC)
-             *setcust S_dividemode:Bg=%*getcust(C_back)
-             *setcust S_dividemode:Alst=%*getcust(XC_alst)
-             *setcust S_dividemode:Rclst=%*getcust(X_rclst)
-             *setcust XC_alst = 1,1,0,0,0
-             *setcust X_rclst = 0
-             *customize C_back=H263010
-             *linemessage [1-5]%*getcust(S_dividemode:base)div1-5に振り分け%bn[^F5]カレントを基準DIRに変更%bn[ESC]モード解除
-}
-```
-
-<BR>
-zz1DivideMode.cfg
-```
-KC_main = {
-^F5     , *string o,path=%*input("%*name(DN,"%FDVN")" -title:"select base.." -mode:e -k *editmode -allkey %%: *completelist -history:d)%\
-          *setcust S_dividemode:base=%so"path"
-          %Oi *ppc -single -noactive %sgo"path" %: *focus
-ESC     , *linemessage 振り分け終了
-          *setcust XC_alst=%*getcust(S_dividemode:Alst)
-          *setcust X_rclst=%*getcust(S_dividemode:Rclst)
-          *customize C_back=%*getcust(S_dividemode:Bg)
-          *deletecust "S_dividemode"
-          *script %'scr'%\exchangeKeys.js,0,%'cfg'%\zz1DivideMode.cfg
-1       , *ppcfile !move,"%*getcust(S_dividemode:base)div1",/min /qstart /nocount /querycreatedirectory:off /log:off
-2       , *ppcfile !move,"%*getcust(S_dividemode:base)div2",/min /qstart /nocount /querycreatedirectory:off /log:off
-3       , *ppcfile !move,"%*getcust(S_dividemode:base)div3",/min /qstart /nocount /querycreatedirectory:off /log:off
-4       , *ppcfile !move,"%*getcust(S_dividemode:base)div4",/min /qstart /nocount /querycreatedirectory:off /log:off
-5       , *ppcfile !move,"%*getcust(S_dividemode:base)div5",/min /qstart /nocount /querycreatedirectory:off /log:off
-}
-```
+| KEY | COMMAND                                             |
+| :-: | :-------------------------------------------------- |
+|  1  | ディレクトリ'sort1'にファイルを送る                 |
+|  2  | ディレクトリ'sort2'にファイルを送る                 |
+|  3  | ディレクトリ'sort3'にファイルを送る                 |
+|  4  | ディレクトリ'sort4'にファイルを送る                 |
+|  5  | ディレクトリ'sort5'にファイルを送る                 |
+| ^F5 | sort1-5の親ディレクトリをカレントディレクトリに変更 |
+| ESC | モード終了                                          |

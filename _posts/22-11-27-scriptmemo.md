@@ -95,4 +95,4 @@ Extract系で差が出ていると推測される。
 - CV8では、`PPx.result`の値がbooleanのとき、`"True"` `"False"`が戻り値となる。  
   (ScriptModuleでは、`"-1"` `"0"`)
 
-- CV8では、PPx.Echo(1, 2)のように複数の引数を持たせるとエラーになる。
+- CV8では、`PPx.Echo(1, 2)`のようにPPx.Echo()に複数の引数を持たせるとエラーになる。
