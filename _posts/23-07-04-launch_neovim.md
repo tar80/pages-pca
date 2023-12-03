@@ -3,7 +3,7 @@ layout: post
 title: PPxとNeovimの連携
 version: PPx193以降
 date: 2023-12-03
-comment: 改稿。\*nvimコマンドとlaunchNeovim.jsを更新。
+comment: 改稿。*nvimコマンドとlaunchNeovim.jsを更新。
 repository: tar80/ppm
 categories: PPc Script
 ---
