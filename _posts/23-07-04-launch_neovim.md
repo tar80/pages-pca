@@ -2,8 +2,8 @@
 layout: post
 title: PPxとNeovimの連携
 version: PPx193以降
-date: 2023-11-16
-comment: 改稿。スクリプトを更新。
+date: 2023-12-03
+comment: 改稿。\*nvimコマンドとlaunchNeovim.jsを更新。
 repository: tar80/ppm
 categories: PPc Script
 ---
@@ -55,6 +55,7 @@ vimdiff などのオプションを調整してNeovimを起動します。
 <BR>
 
 `launchNeovim.js,1,2,3,4`
+戻り値:{number} エラーがあれば`-1`を、なければ`0`を返す
 
 1. {number} プロセスの起動状態 `0`false \| `-1`true
 2. {number} クライアントサーバのポート番号(名前付きパイプ)
@@ -97,9 +98,9 @@ vimdiff などのオプションを調整してNeovimを起動します。
 
 2. PPx の実行コマンド
    ```text
-   *string o,proc=%*script(path\to\seeProcess.js,nvim.exe,9000,"wt -w 1 -p 【Neovimのプロファイル名】",3)
-   *script path\to\launchNeovim.js,%so'proc',【XXX】,【オプション種類】【,exコマンド or 対象パス】
-   *focus #%*findwindowclass(cascadia_hosting_window_class)
+   *string o,proc=%*script("path\to\seeProcess.js",nvim.exe,9000,"wt -w 1 -p 【Neovimのプロファイル名】",3)
+   *string o,error=%*script("path\to\launchNeovim.js",%so'proc',【XXX】,【オプション種類】, "【,exコマンド or 対象パス】"
+   *if 0==0%so'error'%:*focus #%*findwindowclass(cascadia_hosting_window_class)
    ```
 
 以前はppmの導入が必要でしたがスクリプトだけで動くように調整しました。  
