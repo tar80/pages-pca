@@ -2,11 +2,16 @@
 layout: post
 title: ppm information
 version: 194以降
-date: 2023-11-25
-comment: 投稿。
+date: 2023-12-04
+comment: 改稿。
 repository: tar80/ppx-plugin-manager
 categories: '@plugin'
 ---
+
+## お知らせ
+
+ppm v0.93-0.93.7 はインストールできないバグがありました。  
+v0.93.8 で修正しました。
 
 ### 説明
 
@@ -39,7 +44,7 @@ ppm v0.93への更新後、`*ppmUpdate`の実行、または`*script ppm\dist\in
    新らしいコマンドが走るように処理していますが漏れがあるかもしれません。
 
 以上の設定を終えれば新システムへの移行が完了します。  
-また、_pluginlistに新らしいルールを追加したので、`%sgu'ppmcache'\list\_pluginlist`に、  
+また、\_pluginlistに新らしいルールを追加したので、`%sgu'ppmcache'\list\_pluginlist`に、  
 `%sgu'ppm'\sheet\_pluginlist`の差分を適用してください。  
 <BR>
 
@@ -55,11 +60,12 @@ v0.92までの、すべてのJScriptも削除対象です。これらは互換�
 
 1. `*ppmSetDefault`を実行し、起動した一行編集に`ppm-switchmenu`を入力します。  
    入力途中で`Enter`キーを押した場合、補完リストの最初の候補が選択されます。
+
    > `KC_main:T`(PPcの"T"キー)が上書きされるので注意してください。
    > ppmをインストールするまえのPPxの設定は、`%sgu'ppmcache'\backup\_iniital.cfg`に保存されています。
 
 2. PPc上で`T`キーを入力するとスイッチメニューが起動するので、`差分比較(C)` >
-  `プラグイン設定ファイル(P)` を選択し、一行編集に"ppm-switchmenu"を入力します。
+   `プラグイン設定ファイル(P)` を選択し、一行編集に"ppm-switchmenu"を入力します。
 
 3. `S_ppm#user:compare`に指定したツールで差分が開きます。全体が変更されているため、
    一度すべてコピーしたあとに必要な箇所を編集してください。
@@ -71,7 +77,7 @@ v0.92までの、すべてのJScriptも削除対象です。これらは互換�
 - v0.92まではPPxScriptModuleの使用ライブラリにJScript.dllと、Chakra.dllを選択
   できましたが、v0.93以降はPPxが使用できる4つのJavaScriptライブラリ(JScript.dll、
   JScript9.dll、Chakra.dll、ClearScriptV8.dll)のどれでも動作するようになりました。
-  ただしプラグイン側は未対応で今後の対応になります。  
+  ただしプラグイン側は未対応で今後の対応になります。
 - `*ppmXXX`コマンドは引数を記述する必要がありましたが、コマンド内で一行編集を
   呼び出すように変更しました。  
   また、いくつかのコマンド名は変更されました。  
@@ -104,4 +110,3 @@ Chakra(ES6相当)、ClearScript(V8)の四種類があり、それぞれのスク
 TypeScriptでは、VsCodeなどのLSPに対応したエディタであればWScript・PPxオブジェクト
 の型も読めます。  
 動作にはNodeJsが必要です。
-

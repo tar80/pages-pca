@@ -86,8 +86,8 @@ Extract系で差が出ていると推測される。
   たとえば、`ADODB.Stream`の`.Type`、`.LineSeparator`などのプロパティ値や、  
   メソッドの第二引数を指定するとエラーになる場合がある。
 
-- ~JScriptでは`PPx.result`の後に`PPx.Quit()`があっても値は返されるが、  
-  CV8では値は返されずに終了する。~  
+- ~~JScriptでは`PPx.result`の後に`PPx.Quit()`があっても値は返されるが、  
+  CV8では値は返されずに終了する。~~  
   > バグだったようです。R3+1で修正済み
 
 - CV8では、try文内でfso.CreatTextFile()関数を用いてファイルを生成したときに、  
