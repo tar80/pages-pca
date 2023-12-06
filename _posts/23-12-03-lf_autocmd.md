@@ -1,9 +1,9 @@
 ---
 layout: post
-title: リストファイル個別のコマンド実行
+title: リストファイル毎に表示形式を自動変更
 version: PPx194, ppm0.93.7以降
 date: 2023-12-03
-comment: 投稿。
+comment: タイトルを変更。
 repository: tar80/ppx-plugin-manager
 categories: PPc @plugin
 ---
