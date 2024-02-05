@@ -2,8 +2,8 @@
 layout: post
 title: エントリリストにコメントを展開
 version: PPx194, ppm0.93.9以降
-date: 2023-12-06
-comment: 投稿。
+date: 2024-02-05
+comment: 改稿。
 repository: tar80/ppm-comment
 categories: PPc @plugin
 ---
@@ -14,10 +14,9 @@ categories: PPc @plugin
 
 ![sample]({{ site.baseurl }}{% link /public/img/lf_comment.webp %})
 
-コメントをエントリとして展開するので、インクリサーチやエントリマスクで絞り込めます。  
-ただし実体のない仮想エントリなので、そのままではパスを扱えません。  
-パスの開き方は、[リストファイル上の仮想エントリを開く]({{ site.baseurl }}{% post_url 23-12-06-lf_actions %})を参考にしてください。  
-連動ビューできませんがそのうち対応します。
+コメントをエントリとして展開するのでインクリサーチやエントリマスクで絞り込めます。
+ただし実体のない仮想エントリなので、そのままではパスを扱えません。
+パスの開き方は[リストファイル上の仮想エントリを開く]({{ site.baseurl }}{% post_url 23-12-06-lf_actions %})を参考にしてください。  
 
 ### 使い方
 
@@ -29,4 +28,6 @@ categories: PPc @plugin
      表示形式の変更は[リストファイル毎に表示形式を自動変更]({{ site.baseurl }}{% post_url 23-12-03-lf_autocmd %})
      を参考に設定してください。
 1. コメントを絞り込み、あらかじめ設定しておいたコマンドエイリアスにパスを投げる。
+   - `Enter`キーを押すとPPvでカーソル行のパスを参照できます。  
+     "SELECTEVENT"を使った連動表示も作りましたがエラーを頻発したのでやめました。
 1. `⏎`から元のディレクトリに戻る。
