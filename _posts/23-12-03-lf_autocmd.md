@@ -2,7 +2,7 @@
 layout: post
 title: リストファイル毎に表示形式を自動変更
 version: PPx194, ppm0.94以降
-date: 2024-2-05
+date: 2024-02-05
 comment: 仕様を変更した。
 repository: tar80/ppx-plugin-manager
 categories: PPc @plugin
