@@ -2,8 +2,8 @@
 layout: post
 title: PPxスクリプトの覚書
 version: PPXSCR21,PPXCV8R3以降
-date: 2023-11-16
-comment: 追記。JScriptとCV8モジュールの差異
+date: 2024-02-11
+comment: 留意事項を追加。
 categories: Script
 ---
 
@@ -97,3 +97,10 @@ Extract系で差が出ていると推測される。
   (ScriptModuleでは、`"-1"` `"0"`)
 
 - CV8では、`PPx.Echo(1, 2)`のようにPPx.Echo()に複数の引数を持たせるとエラーになる。
+
+### 留意事項
+
+- `PPx.windowIDName`の値は通常アンダースコアを含むが、CZxx形式はアンダースコアを含まない。
+  %*ppxlist(-C)の値は常にアンダースコアを含むためID名の比較時は注意が必要。
+- 一時メニューを`*deletecust`で削除したあとは`%K"@LOADCUST"`する。
+  同じテーブルを%K"@LOADCUST"なしに繰り返し*deletecustするとPPcが落ちる場合あり。
