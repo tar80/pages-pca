@@ -42,7 +42,7 @@ lfActions.js の利用には二段階の設定が必要になります。
    }
    ```
 
-   なお、ppm-commnt、ppm-grepではリストファイル上でのみ有効になるキー設定を登録できるので、
+   なお、ppm-comment、ppm-grepではリストファイル上でのみ有効になるキー設定を登録できるので、
    そちらに登録すれば`KC_main`にlfActions,jsを登録する必要はありません。
    <BR><BR>
 

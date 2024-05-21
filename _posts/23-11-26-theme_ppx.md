@@ -72,14 +72,14 @@ categories: PPc PPv PPb @plugin
    ...
    -- =
    &iceberg = *string o,pwd=%*script(%sgu'ppmlib'\expandSource.js,ppm-theme,path)
-    *script o,theme=%so'pwd'\themes\windowsterminal\iceberg-dark.json
+    *string o,theme=%so'pwd'\themes\windowsterminal\iceberg-dark.json
     *script %so'pwd'\dist\applyTheme.js,%so'theme'
     ; *setcust C_entry=...
     ; *setcust C_eInfo=...
     ; ...
     ; %K"@LOADCUST"
    &tokyonight = *string o,pwd=%*script(%sgu'ppmlib'\expandSource.js,ppm-theme,path)
-    *script o,theme=%so'pwd'\themes\windowsterminal\tokyonight.json
+    *string o,theme=%so'pwd'\themes\windowsterminal\tokyonight.json
     *script %so'pwd'\dist\applyTheme.js,%so'theme'
     ; *setcust C_entry=...
     ; *setcust C_eInfo=...
@@ -112,7 +112,7 @@ categories: PPc PPv PPb @plugin
 
 #### 補足
 
-`mbadolato/iTerm2-Color-Schemes`はコンソール用の設定なので、PPvやPPbはともかく
+`mbadolato/iTerm2-Color-Schemes`はコンソール用の色設定なので、PPvやPPbはともかく
 PPcのテーマとして使うには色数が物足りないです。大まかな色設定はテーマに任せて
 細かい部分は自分で色設定を調整したり、PPcには適用せずPPv,PPb用に設定するなど
 工夫してみてください。

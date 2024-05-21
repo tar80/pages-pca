@@ -9,7 +9,7 @@ categories: PPc
 ### 説明
 
 ifextend.spi(Extend convert Susie Plug-in)にPDFのサムネイル用設定を記述します。  
-サムネイルの生成には[ghostscript](https://www.ghostscript.com/)を使用します。
+サムネイルの生成には[ghostscript](https://www.ghostscript.com/)を使用します。  
 あらかじめインストールしておいてください。scoopでのインストールが簡単便利です。
 
 #### 設定
