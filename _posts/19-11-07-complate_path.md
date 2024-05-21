@@ -7,6 +7,7 @@ comment: moduleトグル用のキーバインドを追加
 repository: tar80/ppm-comppath
 categories: PPc @plugin
 ---
+
 ### 説明
 
 PPc一行編集でのパス補完サポート。
@@ -23,25 +24,25 @@ PPc一行編集でのパス補完サポート。
 - スペースを含むパスにある程度対応。
 - コマンドを含む文字列にある程度対応。
 - マクロ文字(%0など)、auxパスに対応。
-- TAB補完を有効にするにはX\_ltabの第一項目を1にする、もしくは\*editmode -tabkey:onを設定してください。<BR>
-  > 一行編集上にalt+移動候補キーが存在しない場合、X\_ltabの値に関わらず
-  TAB補完が有効になるようです。普段はmigemo不使用(0,2)、一時的にmigemo使用(1,4-6)するような場合に
-  以下のコマンドが利用できます。<BR>
-   ```text
-   *linecust ltab,K_lied:FIRSTEVENT,*setcust X_ltab=%*getcust(X_ltab) %%: *linecust ltab,K_lied:FIRSTEVENT,
-   *setcust X_ltab=1,4
-   ```
+- TAB補完を有効にするにはX_ltabの第一項目を1にする、もしくは\*editmode -tabkey:onを設定してください。<BR>
+  > 一行編集上にalt+移動候補キーが存在しない場合、X_ltabの値に関わらず
+  > TAB補完が有効になるようです。普段はmigemo不使用(0,2)、一時的にmigemo使用(1,4-6)するような場合に
+  > 以下のコマンドが利用できます。<BR>
+  ```text
+  *linecust ltab,K_lied:FIRSTEVENT,*setcust X_ltab=%*getcust(X_ltab) %%: *linecust ltab,K_lied:FIRSTEVENT,
+  *setcust X_ltab=1,4
+  ```
 
 > - コマンド内で[setSel.js]({{ site.baseurl }}{% post_url 20-12-26-script_setSel %})、
-[compCode.js]({{ site.baseurl }}{% post_url 20-12-22-script_compcode %})、
-[result.js]({{ site.baseurl }}{% post_url 20-12-18-script_result %})を使っています。
-> - X\_fdir=1, X\_flst≧3 ,X\_ltab≧1 で使うことを想定。
+>   [compCode.js]({{ site.baseurl }}{% post_url 20-12-22-script_compcode %})、
+>   [result.js]({{ site.baseurl }}{% post_url 20-12-18-script_result %})を使っています。
+> - X_fdir=1, X_flst≧3 ,X_ltab≧1 で使うことを想定。
 > - コードをダウンロードして使う場合、fenrirscan.iniは文字コードを変換する必要があります。
 
 ### 使いかた
 
 補完の邪魔になることが多いので標準でEverything Search Moduleは不使用。
-CTRL+@キーで使用をトグルできる。  
+CTRL+@キーで使用をトグルできる。
 
 <BR>
 ![sample]({{ site.baseurl }}{% link /public/img/complete_path.gif %})
@@ -50,25 +51,24 @@ CTRL+@キーで使用をトグルできる。
 
 PPc
 
-| KEY | COMMAND |
-|:-:|:-|
-| @ | 一行編集(パス移動用) |
+|   KEY   | COMMAND                              |
+| :-----: | :----------------------------------- |
+|    @    | 一行編集(パス移動用)                 |
 | SHIFT+@ | 一行編集(反対窓を非アクティブで開く) |
 
 <BR>
 一行編集
 
-| KEY | COMMAND |
-|:-:|:-|
-| F12 | パスリストの更新(fenrirscan) |
-| CTRL+H | 編集中のディレクトリパスを一つ上のパスにする |
-| CTRL+L | 編集中のディレクトリパスを下層へ補完する |
-| CTRL+N | 次の候補 |
-| CTRL+P | 前の候補 |
-| CTRL+S | 編集中のパスをScanRule.iniに追加 |
-| CTRL+@ | -module:on/offのトグル |
-| ENTER | パス入力途中でENTERした時に補完候補一行目を実行 |
-
+|  KEY   | COMMAND                                         |
+| :----: | :---------------------------------------------- |
+|  F12   | パスリストの更新(fenrirscan)                    |
+| CTRL+H | 編集中のディレクトリパスを一つ上のパスにする    |
+| CTRL+L | 編集中のディレクトリパスを下層へ補完する        |
+| CTRL+N | 次の候補                                        |
+| CTRL+P | 前の候補                                        |
+| CTRL+S | 編集中のパスをScanRule.iniに追加                |
+| CTRL+@ | -module:on/offのトグル                          |
+| ENTER  | パス入力途中でENTERした時に補完候補一行目を実行 |
 
 #### 設定
 
@@ -113,6 +113,6 @@ F12    , %Oq *run -noactive -d:%0 fenrirScan.exe %& %Obd type %0%\PPXFPATH.TXT >
          *string e,module=1
 }
 ```
-  
+
 <BR>
 <script src="https://gist.github.com/tar80/bb366d370a8a25ee903b3163d42a82f1.js"></script>

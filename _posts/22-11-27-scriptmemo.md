@@ -2,8 +2,8 @@
 layout: post
 title: PPxスクリプトの覚書
 version: PPXSCR21,PPXCV8R3以降
-date: 2024-02-11
-comment: 留意事項を追加。
+date: 2024-05-21
+comment: 記事を修正した。
 categories: Script
 ---
 
@@ -93,10 +93,10 @@ Extract系で差が出ていると推測される。
 - CV8では、try文内でfso.CreatTextFile()関数を用いてファイルを生成したときに、  
   ファイル生成に成功した場合でも例外エラーが発生する。
 
-- CV8では、`PPx.result`の値がbooleanのとき、`"True"` `"False"`が戻り値となる。  
-  (ScriptModuleでは、`"-1"` `"0"`)
+- ~~CV8では、`PPx.result`の値がbooleanのとき、`"True"` `"False"`が戻り値となる。~~  
+  > R3+2から、`"-1"` `"0"`に統一されました
 
-- CV8では、`PPx.Echo(1, 2)`のようにPPx.Echo()に複数の引数を持たせるとエラーになる。
+- CV8では、`PPx.Echo()`に複数の引数を指定できない。
 
 ### 留意事項
 

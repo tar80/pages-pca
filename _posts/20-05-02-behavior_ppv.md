@@ -12,8 +12,9 @@ PPvで開いたファイルの種類に合わせて画像・テキスト表示�
 隠しメニューの変更には別途書き出した設定ファイルを使用します。
 
 > - ユーザーコマンド内でPPXTEXT.DLL、隠しメニュー内でPPXWIN.DLLを使用。
-> - ACTIVEEVENTで随時表示を更新しているので設定によっては弊害がでる可能性があります。<BR>
+> - ACTIVEEVENTで随時表示を更新しているので設定によっては弊害がでる可能性があります。  
   その際は問題のでるコマンドに以下を追記。
+
 > ```clean
   key , *linecust Do,KV_main:ACTIVEEVENT,
          *linecust Do,KV_img:ACTIVEEVENT,

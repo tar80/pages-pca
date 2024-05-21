@@ -10,9 +10,9 @@ categories: PPc
 
 ### 説明
 
-ifextend.spi(Extend convert Susie Plug-in)を導入するとPPcで動画のサムネイルを生成できるようになります。
+ifextend.spi(Extend convert Susie Plug-in)を導入するとPPcで動画のサムネイルを生成できます。
 デフォルトではffmpegを使用しファイル頭から2秒後の画像を抽出するようになっていますが、ファイルによっては
-内容がよくわからないサムネイルができることもあると思います。  
+内容のよくわからないサムネイルができることもあると思います。  
 そこで動画サムネイルを手動で設定するコマンドを用意しました。  
 
 > コマンド内でffmpegを使用

@@ -5,7 +5,7 @@ version: PPx194以降
 date: 2023-11-26
 comment: 投稿。
 repository: tar80/ppm-theme
-categories: PPc PPv PPb PPe @plugin
+categories: PPc PPv PPb @plugin
 ---
 
 ### 説明
