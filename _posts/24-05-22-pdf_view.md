@@ -35,7 +35,7 @@ PPcからPPvを使ってPDFを閲覧するために以下の2つの方法を試�
 `*setcust E_cr::PDF,*script path\to\expandPDF.js`
 
 - expandPDF.js,`1`,`2`
-  1. `string` 展開するPDFのパスを指定(default:`%FDC`)
+  1. `string` 展開するPDFのフルパスを指定(default:`%FDC`)
   2. `number` 展開するページ数の上限を指定(default:`99`)
 
 スクリプト内の`var GS`、`var CMD` は自環境に合わせて調整が必要です。
