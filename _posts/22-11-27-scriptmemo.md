@@ -11,7 +11,7 @@ categories: Script
 
 PPx用JScriptを書くときのTips。自分が忘れないように書きとどめ。  
 
-#### 別スレッドへのスイッチ
+#### 実行順の制御
 
 `%K`と`%K[ID]`では実行される順序が異なる。  
 下はエントリリスト更新後に"dummy-entry"を挿入するコードだが、IDありの場合  
@@ -35,8 +35,10 @@ PPx.Execute('*wait 0,1');
 PPx.EntryInsert(0, 'dummy-entry');
 ```
 
-PPXSCR.TXTでは`PPx.Sleep(0)`で説明されているが、\*waitの仕様が変わったためか  
-`PPx.Sleep(0)`および`*wait 0`ではスレッドは変更されない。  
+~~PPXSCR.TXTでは`PPx.Sleep(0)`で説明されているが、\*waitの仕様が変わったためか  
+`PPx.Sleep(0)`および`*wait 0`ではスレッドは変更されない。~~  
+実行順の制御(メッセージループ)とスレッドの制御はたぶん関係ないので上の説明は勘違いです。
+単純に`*wait 0` と `*wait 0,n` では結果が異なる。
 
 #### 別PPx上でのコマンドの終了コード取得
 
