@@ -7,9 +7,9 @@ permalink: /about/
 TORO 氏作のファイラ[Paper Plane xUI](http://toro.d.dooo.jp/slppx.html)のカスタマイズ記事を投稿しています。  
 winXP_32bit(JScript5.7)と win10_64bit(ECMAScript6)で動作確認しています。
 
-- カスタマイズは自己責任でお願いします。また必ずバックアップを取って下さい。  
+- カスタマイズは自己責任でお願いします。また必ずバックアップを取ってくささい。  
   `*ppcust CD %0%\PPX_%*now(date).CFG`
-- 全ての記事において ScriptModule(PPXSCR.DLL)R19 は導入済みとして扱われます。
+- すべての記事は ScriptModule(PPXSCR.DLL)R21 は導入を前提としています。
 - スクリプトは JScript と ES6 で記述していますが見える部分の違いはありません。ES6 を使う場合は
   ファイル名から`_es6`の部分を除去し、`*setcust _Others:usejs9=4`を実行後
   再起動してください。また文字コードが utf-8 の場合は BOM を付けてください。
@@ -56,6 +56,7 @@ gvim =    ;gvim.exeのパス
   - Nyagos [github](https://github.com/nyaosorg/nyagos/releases) コマンドラインシェル
   - Ralpha [nilposoft](http://nilposoft.info/) 画像処理
   - Windows Terminal [github](https://github.com/microsoft/terminal/releases) 端末エミュレータ
+  - Ghostscript [GhostScript](https://www.ghostscript.com/) PostScript/PDF インタプリタ
 
 - **外部コマンド**
 
@@ -84,7 +85,7 @@ gvim =    ;gvim.exeのパス
 
 - **外部ライブラリ**
   - bregonig [k-takata](http://k-takata.o.oo7.jp/mysoft/bregonig.html) 正規表現
-  - migemo [kaoriya](https://www.kaoriya.net/software/cmigemo/) ローマ字検索
+  - Migemo [kaoriya](https://www.kaoriya.net/software/cmigemo/) ローマ字検索
   - 7-zip64.dll,7z.dll [frostmoon](http://frostmoon.sakura.ne.jp/) 統合アーカイバ
 
 ---

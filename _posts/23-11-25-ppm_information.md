@@ -1,8 +1,8 @@
 ---
 layout: post
 title: ppm information
-version: 194以降
-date: 2024-02-06
+version: 197以降
+date: 2024-06-22
 comment: 改稿。
 repository: tar80/ppx-plugin-manager
 categories: '@plugin'
@@ -10,22 +10,24 @@ categories: '@plugin'
 
 ## お知らせ
 
-ppm v0.94をリリースしました。  
+ppm v0.95をリリースしました。  
 
-- ppmがインストールできないバグの修正
-- プラグインの導入・アップデートに失敗するバグの修正
-- 仮想エントリの導入
+- QuickJS moduleへの対応
+- PPx.StayModeへの対応
+- VBScriptの置き換え
+- バグ修正
 
-が、主な更新内容です。本体の設定が追加されているので`*ppmCompare`実行後、`*ppmEdit`してください。  
-また、アップデートログが取得できないままだったので修正しました。  
-
+が、主な更新内容です。  
+スクリプト引数の取得方法を変更したのでそれを起因とするエラーが発生するかもしれません。  
+また、インストール時にInternetExplorer経由でディスプレイサイズを取得していましたが  
+プラグインで必要になったときに取得するように変更します。  
 <BR>
-![sample]({{ site.baseurl }}{% link /public/img/updatelog.png %})
-
-<BR>
-キャレットモードでコミットにカーソルを合せ、`ENTER`キーで別PPvに詳細表示できます。  
-
-![sample]({{ site.baseurl }}{% link /public/img/updatelog2.png %})
+最近のスクリプトモジュールの更新で機能面が大きく強化され、ppmもそれに合わせて
+更新をしたためPPx本体version197+1と、WSH_21P3,CV8_R03P4, QJS_T5以降のバージョン
+のスクリプトモジュールが必要になります。  
+PPx.StayModeが更新されたので、ppm-adjacentdir, ppm-comppathにStayModeを使用する
+設定を追加してみました。JScript, QuickJSでは速度差を感じませんが、CV8では体感で
+速く感じると思います。
 
 ### 説明
 

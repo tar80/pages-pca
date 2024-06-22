@@ -41,5 +41,3 @@ PPcからPPvを使ってPDFを閲覧するために以下の2つの方法を試�
 スクリプト内の`var GS`、`var CMD` は自環境に合わせて調整が必要です。
 
 <script src="https://gist.github.com/tar80/5372f4d5273002144ef676826a5ba2f7.js"></script>
-
-> expandPDF.jsはWSH,CV8で動作確認しました。QuickJSでは現在のところ動作しません。
