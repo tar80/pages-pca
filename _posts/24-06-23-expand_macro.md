@@ -2,8 +2,8 @@
 layout: post
 title: 選択文字列をマクロ展開
 version: PPx197以降
-date: 2024-06-23
-comment: 投稿。
+date: 2024-06-27
+comment: 記事と動画を更新
 repository: ppm-edit
 categories: PPc @plugin
 ---
@@ -12,13 +12,16 @@ categories: PPc @plugin
 
 選択範囲の文字列をマクロ展開して一行編集に挿入します。
 
-- "%"から始まる文字列は通常のマクロ展開
-- "u"から始まる文字列は数値として文字コードに対応する文字に置き換えます。
+- `%`から始まる文字列は通常のマクロ展開
+- `u`から始まる文字列は数値として文字コードに対応する文字に置き換え
   (※ %b数値のエイリアス)
-- "x"から始まる文字列は16進数として文字コードに対応する文字に置き換えます。
-  (※ %bx16進数のエイリアス)  
-  
-![sample]({{ site.baseurl }}{% link /public/img/expand_macro.webp %})
+- `x`から始まる文字列は16進数として文字コードに対応する文字に置き換え
+  (※ %bx16進数のエイリアス)
+- `%`から始まらず、`_`を含む文字列をテーブルとして展開  
+  `KC_main`, `M_menu:R`
+
+<BR>
+![sample]({{ site.baseurl }}{% link /public/img/expand_macro2.webp %})
 
 ### 使い方
 
