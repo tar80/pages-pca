@@ -2,8 +2,8 @@
 layout: post
 title: 同階層の隣合うディレクトリに移動
 version: PPx181以降
-date: 2024-08-05
-comment: 表を修正
+date: 2024-08-06
+comment: 記事を修正
 repository: tar80/ppm-adjacentdir
 categories: PPc @plugin
 ---
@@ -18,8 +18,8 @@ categories: PPc @plugin
   ```clean
   DIR
   └┬─A   つぎここ
-   ├─B <-いまここ
-   └─C   つぎここ
+    ├─B <-いまここ
+    └─C   つぎここ
   ```
 
 - 同じ拡張子を持つ仮想ディレクトリへの移動も可能。下の場合、
@@ -28,15 +28,19 @@ categories: PPc @plugin
   ```clean
   DIR
   └┬─A.zip   つぎここ
-   ├─A.txt
-   ├─B.zip <-いまここ
-   ├─C.7z
-   └─D.zip   つぎここ
+    ├─A.txt
+    ├─B.zip <-いまここ
+    ├─C.7z
+    └─D.zip   つぎここ
   ```
 
 - 移動先がない場合はメッセージを表示。`<<Root>>` `<Top>` `<Bottom>`
 
 ### 使い方
+
+ppm-adjacentdirをインストールしてください。  
+ppmを使わない場合は、以下のファイルを手動で導入することもできます。  
+プラグイン版との大きな違いは一時常駐(StayMode)の有無です。他にもちょこちょこ処理が違います。
 
 - `*script %'scr'%\moveDir.js,0` 前のディレクトリへ
 - `*script %'scr'%\moveDir.js,1` 後のディレクトリへ
