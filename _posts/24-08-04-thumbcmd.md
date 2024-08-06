@@ -2,9 +2,9 @@
 layout: post
 title: サムネイルキャッシュの一括登録
 version: PPx198+1以降
-date: 2024-08-04
-comment: 投稿。
-repository: ppm-misc
+date: 2024-08-06
+comment: 改稿。
+repository: tar80/ppm-misc
 categories: PPc @plugin
 ---
 
@@ -24,7 +24,7 @@ PPcのサムネイル表示機能は、サムネイル作成に時間のかか�
 ### 使い方
 
 - **補完候補リストの編集**  
-  サムネイル生成コマンド指定用の補完候補リスト`%sgu'ppmcache'\list\thumbcmd.txt`を編集します。  
+  サムネイル生成コマンド指定用の補完候補リスト`%sgu'ppmcache'\complist\thumbcmd.txt`を編集します。  
   ffmpegの設定サンプルが書かれているので参考にしてください。
 
   ```text
