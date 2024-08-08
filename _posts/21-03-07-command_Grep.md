@@ -2,8 +2,8 @@
 layout: post
 title: PPxでGrep
 version: PPx183以降 KeyModuleR8以降
-date: 2024-02-06
-comment: 改稿。
+date: 2024-08-08
+comment: 連動ビューの動画を追加。
 repository: tar80/ppm-grep
 categories: PPc @plugin
 ---
@@ -16,7 +16,8 @@ categories: PPc @plugin
   コマンドは grep, ripgrep, jvgrep, git grep、出力先はPPc, PPv, エディタから選択できます。
 - PPvで表示時には一時的にキャレットモードに変更します。
 - 検索結果にはlfActions\.js経由で指定したコマンドを実行可能。
-- 検索結果は%*temp()内に蓄積されるので、[同階層の隣合うディレクトリに移動]({{ site.baseurl}}{% post_url 20-12-25-move_directory %})を使うと簡単に履歴をたどれます。  
+- 検索結果は%*temp()内に蓄積されるので、[同階層の隣り合うディレクトリに移動]({{ site.baseurl}}{% post_url 20-12-25-move_directory %})
+を使うと簡単に履歴をたどれます。  
 
 ### 使い方
 
@@ -33,9 +34,8 @@ categories: PPc @plugin
    結果は拡張子の語尾に`_e`を付加した`<keyword>.ppmgrep_e`に出力されます。
 1. エントリリスト上では、マスクやインクリメンタルサーチを使って候補のさらなる絞り込みができます。  
    - `R`キーで前後行のマスクをトグルできます。
-   - `Y`キーでPPvをトグルできます。PPv起動中は`ENTER`キーで行ジャンプできます。  
-   - `S`キーではsedを使って文字列の置換も可能です。行選択が可能なのでより柔軟に置換対象を選別できます。  
-   必要かどうかは別として…
+   - `Y`キーで連動ビューをトグルできます。
+   - `S`キーではsedを使って文字列の置換も可能です。行選択が可能なのでより柔軟に置換対象を選別できます。
 
 <BR>
 **エントリリスト上への出力**
@@ -47,3 +47,7 @@ categories: PPc @plugin
 <BR>
 **sedを使った置換**
 ![sample]({{ site.baseurl }}{% link /public/img/grep_sed.webp %})
+
+<BR>
+**連動ビュー**
+![sample]({{ site.baseurl}}{% link /public/img/grep_syncview.webp %})
