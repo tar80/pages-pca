@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PPxでGrep
-version: PPx183以降 KeyModuleR8以降
+version: PPx198以降 KeyModuleR8以降
 date: 2024-08-08
 comment: 連動ビューの動画を追加。
 repository: tar80/ppm-grep
