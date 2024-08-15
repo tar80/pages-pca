@@ -16,7 +16,7 @@ WindowsのパッケージマネージャーにはWinget、Chocolatey、Scoopな�
 シェルコマンドをインストールするとPPx上で扱いづらいという欠点があります。  
 この記事ではScoopのshimとシェルコマンドの相性のわるさの説明と、その改善策を考えます。  
 <BR>
-shimはWindowsに搭載されているApplication Compatibilityというしくみで、
+shimとはWindowsに搭載されているApplication Compatibilityというしくみのことで、
 実行ファイルのリンク機能のようなものです。Scoopではこの機能を使って環境変数の
 登録を最低限に抑えています。shimを使った実行ファイルの管理はGUIアプリケーション
 ではおおむね問題ありませんが、シェルアプリケーションではcmd.exeを経由するため
@@ -75,6 +75,6 @@ shellcmd = %*script("path\to\shellcmdRegister.js",%*arg(1))
 ```  
 <BR>
 スクリプトはJScript5.7対応ですが試行していません。  
-エラーが出るとしたら文法ミスです。修正して使ってください。
+エラーが出るとすれば文法ミスです。修正して使ってください。
 
 <script src="https://gist.github.com/tar80/425d9951187123c2eedd64204f952ef0.js"></script>
