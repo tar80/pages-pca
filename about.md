@@ -5,11 +5,11 @@ permalink: /about/
 ---
 
 TORO 氏作のファイラ[Paper Plane xUI](http://toro.d.dooo.jp/slppx.html)のカスタマイズ記事を投稿しています。  
-winXP_32bit(JScript5.7)と win10_64bit(ECMAScript6)で動作確認しています。
+win10_64bit(WSH_Chakra.dll)で動作確認しています。
 
 - カスタマイズは自己責任でお願いします。また必ずバックアップを取ってください。  
   `*ppcust CD %0%\PPX_%*now(date).CFG`
-- すべての記事は ScriptModule(PPXSCR.DLL)R21 は導入を前提としています。
+- すべての記事は ScriptModule(PPXSCR.DLL)R21 の導入を前提としています。
 - スクリプトは JScript と ES6 で記述していますが見える部分の違いはありません。ES6 を使う場合は
   ファイル名から`_es6`の部分を除去し、`*setcust _Others:usejs9=4`を実行後
   再起動してください。また文字コードが utf-8 の場合は BOM を付けてください。

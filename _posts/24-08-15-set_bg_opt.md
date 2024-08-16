@@ -2,8 +2,8 @@
 layout: post
 title: このパス以降に背景画像を設定（最適化）
 version: PPx198以降
-date: 2024-08-15
-comment: 投稿。
+date: 2024-08-16
+comment: \*oneshotコマンドを調整
 repository: 
 categories: PPc
 ---
@@ -19,7 +19,7 @@ categories: PPc
 1. 背景を設定した特定のパスから別のパスに移動するとき、移動先が個別の
    ディレクトリ設定をもつ場合に背景の更新処理が行われない
 
-これらが気になる人もいるでしょう。今回の記事ではより複雑になりますが、
+今回の記事ではより複雑になりますが、
 全体設定(`*`)を使わずLOADEVENTに*linecustを登録する方法を解説します。
 
 #### 設定
@@ -33,9 +33,11 @@ categories: PPc
 1. `_Command`に*linecustの登録コマンドを設定する
    ```text
    _Command = {
-    oneshot = *linecust %*arg(1)%n,%*arg(2),*if ("%n"=="%%n")&&(0!=%%*js("PPx.result='%*arg(4)'.indexOf('%*arg(3)');"))%%:*linecust %*arg(1)%n,%*arg(2),%%:%*arg(5)
+    oneshot = *linecust %*arg(1)%n,%*arg(2),*if ("%n"=="%%n")&&(0!=%%*js("PPx.result='%*arg(4)'.indexOf('%*arg(3)');"))%%:*linecust %*arg(1)%n,%*arg(2),%%:%*arg(5)%:%K"@LOADCUST"
     }
    ```
+   > 2024/8/16 コマンドの末尾に`%K"@LOADCUST"`を追加
+
 1. 最後にメニュー登録してあればそちらも修正する
    ```text
    ;コンテキストメニュー
@@ -47,8 +49,8 @@ categories: PPc
 \*oneshotコマンドの説明  
 `*oneshot <ラベル名>,<テーブル:イベント名>,<word1>,<word2>,<実行コマンド>`  
 
-\*oneshot実行時とPPcIDが一致し、\<word1>が\<word2>に含まれなければ、一度だけ
-コマンドを実行します。  
+\*oneshot実行時とPPcIDが一致し、\<word1>が\<word2>に含まれなければ、イベント発動時に
+一度だけコマンドを実行します。  
 例として、\<word1>に`%FD`、\<word2>に`%%FD`を設定した場合、  
 \<word1>は*oneshot実行時に展開され、\<word2>はイベント実行時に展開されます。  
 必ず発動させたい場合は\<word1>=`0`、\<word2>=`1`のように設定します。  
