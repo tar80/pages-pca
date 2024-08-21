@@ -26,7 +26,7 @@ categories: PPc
 
 1. 最初に、設定されているなら`XC_dset:*`の`cmd:`から背景画像の削除設定を除去する  
    `*deletecust X_bg:P_%n%:*deletecust X_bg:T_%n%:*color back` のような部分です。
-1. 次に`XC_dset`の特定のパスに`*diroption`を設定する
+1. 次に`XC_dset`の特定のパスに`cmd:`を設定する
    ```text
    *setcust X_bg:P_%n=<背景画像のパス>%:*setcust X_bg:T_%n=20%:*color back%:*oneshot dset,KC_main:LOADEVENT,%FDV,%%FDV,*deletecust X_bg:P_%n%%:*deletecust X_bg:T_%n%%:*color back
    ```
