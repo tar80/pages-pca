@@ -42,21 +42,23 @@ PPvをより便利に操作するための設定集です。様々な機能を�
    自動位置調整のトグルは`*js ":%sp'workerPPv',ppx_ToggleDodge"`を実行します。  
    X_vpos=0、PPvの同時起動数が一枚のときのみ有効になります。  
    有効時は`XC_main:SELECTEVENT`が設定されます。
-  <BR>
+
+<BR>
 - **PPvの挙動を動的に変更**  
    記事から大幅に変更されています。現在の隠しメニューは\_User:ppmviewHMに保存されます。  
    無駄な読み込みを制限するようにしています。
   > 24/9/15 隠しメニュー項目が変更されているので差分を適用してください。  
   > `difftool %sgu'ppmcache'\list\HMppvDoc.cfg %sgu'ppmrepo'\ppm-view\seat\HMppvDoc.cfg`  
-  > `difftool %sgu'ppmcache'\list\HMppvImg.cfg %sgu'ppmrepo'\ppm-view\seat\HMppvImg.cfg` > <BR>
+  > `difftool %sgu'ppmcache'\list\HMppvImg.cfg %sgu'ppmrepo'\ppm-view\seat\HMppvImg.cfg`
+
+<BR>
 - **窓数に合わせた連動ビューの制御**  
    PPc の窓数に合わせて、1枚なら通常起動、2枚なら`*capturewindow`で反対窓に取り込みます。
   その際`X_win:V`を指定できますが、capturewindow取り込み時にはタイトルバーを強制offします。
   また、取り込み前のサイズやXV_tmod(キャレット状態)を維持します。
-
   [連動ビュー動作例]({{ site.baseurl }}{% link /public/img/view_sync.webp %})
-  <BR>
 
+<BR>
 - **Batを使ってPPvで構文ハイライト**  
   BatとNkfを使用してファイルに構文ハイライトを適用します。  
   ファイルエンコードの自動判別を追加しました。BomなしUnicodeは判別できませんが、
@@ -65,13 +67,13 @@ PPvをより便利に操作するための設定集です。様々な機能を�
   構文ハイライトを読み込むことも可能です。  
   [エンコード自動判定]({{ site.baseurl }}{% link /public/img/view_auto_syntax.webp %})
 
-  | key                   | command                |
-  | :-------------------- | :--------------------- |
-  | (PPc) N               | ビューア拡張子判別実行 |
-  | (PPv) CTRL+SHIFT+UP   | 前のファイル           |
-  | (PPv) CTRL+SHIFT+DOWN | 次のファイル           |
-  | (PPv) F5              | 再読み込み             |
-  | (PPv) SHIFT+F5        | Bat出力読み込み        |
+    | key                   | command                |
+    | :-------------------- | :--------------------- |
+    | (PPc) N               | ビューア拡張子判別実行 |
+    | (PPv) CTRL+SHIFT+UP   | 前のファイル           |
+    | (PPv) CTRL+SHIFT+DOWN | 次のファイル           |
+    | (PPv) F5              | 再読み込み             |
+    | (PPv) SHIFT+F5        | Bat出力読み込み        |
 
 <BR>
 - **ラップ・最全面・透明度のトグルキー**  
@@ -167,7 +169,7 @@ PPvをより便利に操作するための設定集です。様々な機能を�
 
     |         key         | command                        |
     | :-----------------: | :----------------------------- |
-    |         1-0         | カウンタ                       |
+    |         0-9         | カウンタ                       |
     |       H,J,K,L       | カーソル移動                   |
     |    SHIFT+H,J,K,L    | 画面スクロール                 |
     |          A          | 行頭へ移動                     |
@@ -179,5 +181,5 @@ PPvをより便利に操作するための設定集です。様々な機能を�
     |          :          | 最後に実行したコマンドを再実行 |
     |          I          | 直近の括り内を範囲選択         |
     |          W          | 単語を範囲選択                 |
-    |      SHIFT\*+W      | 単語ブロックを範囲選択         |
+    |      SHIFT+W        | 単語ブロックを範囲選択         |
     | " ' ` , \{ \[ \( \< | 対応する括り内を範囲選択       |
