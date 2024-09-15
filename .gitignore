@@ -12,4 +12,4 @@ vendor/
 _drafts/
 gemfile.lock
 .markdownlint.yaml
-.prettierrc.yml
+.prettierrc.yaml
