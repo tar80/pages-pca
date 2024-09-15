@@ -63,14 +63,14 @@ userscript/_testHelper.jsを直接参照してください。
   `Type: 値の型`、`Value: 値`の形式で出力されます。  
 - **tableItem(key, value)** テーブル項目です。  
   `key`はテーブルのプロパティ名、`value`にはコマンドラインを記述します。
-- **table(att, callback)** 一時的なテーブルを設定し、実行します。  
-  `att`はテーブルの属性です。`E`(拡張子)、`M`(メニュー)'、`K`(キー)のいずれかを
+- **table(att, fallback)** 一時的なテーブルを設定し、実行します。  
+  `att`はテーブルの属性です。`E`(拡張子)、`M`(メニュー)、`K`(キー)のいずれかを
   指定します。  
-  `callback`内には`tableItem()`を記述します。
+  `fallback`内には`tableItem()`を記述します。
 - **measure(subject, callback)** ベンチマークで実行するテストコードです。  
   `subject`にはテストコードの件名、`callback`内にテストコードを記述します。
 - **benchmark(desc, count, session)** ベンチマークを実行します。  
-  `desc`にはベンチマークの説明、`count`はテストコードの実行回数、`session`はコールバック関数です。  
+  `desc`はベンチマークの説明、`count`はテストコードの実行回数、`session`はコールバック関数です。  
   `session`内に`measure()`を記述します。  
 
 スクリプトからの出力はログ窓、またはPPb\[T]のどちらかに出力されます。

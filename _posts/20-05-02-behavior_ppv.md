@@ -7,26 +7,33 @@ comment: スクリプトを書き直した。
 repository: tar80/ppm-view
 categories: PPv
 ---
+
+>24/9/15 こちらの記事の内容は更新されていません。  
+>ppm-viewを導入すると更新されたカスタマイズ設定を適用できます。
+
 ### 説明
+
 PPvで開いたファイルの種類に合わせて画像・テキスト表示時の左クリック・ドラッグ・隠しメニューをそれぞれ変更するための設定集。
 隠しメニューの変更には別途書き出した設定ファイルを使用します。
 
 > - ユーザーコマンド内でPPXTEXT.DLL、隠しメニュー内でPPXWIN.DLLを使用。
 > - ACTIVEEVENTで随時表示を更新しているので設定によっては弊害がでる可能性があります。  
-  その際は問題のでるコマンドに以下を追記。
-
+> その際は問題のでるコマンドに以下を追記。
+>
 > ```clean
-  key , *linecust Do,KV_main:ACTIVEEVENT,
-         *linecust Do,KV_img:ACTIVEEVENT,
-  ```
+>   key , *linecust Do,KV_main:ACTIVEEVENT,
+>          *linecust Do,KV_img:ACTIVEEVENT,
+> ```
 
 ### 使い方
+
 - PPvを起動しファイルを開く。
 - 別のファイルを開くと自動で設定が変更される。
 
 [苺のアップ画像が表示されます。ブツブツ嫌いな人は要注意]({{ site.baseurl }}{% link /public/img/behavior_ppv.gif %})
 
-#### マウスジェスチャー
+#### マウスジェスチャ
+
 **PPv**
 
 | ACTION        | COMMAND     |

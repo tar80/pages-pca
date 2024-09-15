@@ -3,12 +3,18 @@ layout: post
 title: カーソル位置に応じてPPvを移動
 version: Px181以降
 date: 2021-11-20
-comment: 左右上下は止めて左右移動のみに変更した。
+comment: お知らせを更新。
 repository: tar80/ppm-view
 categories: PPv
 ---
+
+>24/9/15 こちらの記事の内容は更新されていません。  
+>ppm-viewを導入すると更新されたカスタマイズ設定を適用できます。
+
 ### 説明
+
 PPc上のカーソル位置が画面真ん中より右にあれば左に、左にあれば右にPPvを移動します。
+
 - 複数枚のPPv起動で停止。%si"vState"が1の時、スクリプトが停止するので除外対象には、
   - PPcからは`*string i,vState=1`を適用。
   - PPvからは`*execute C,*string i,vState=1`を適用。
@@ -17,8 +23,9 @@ PPc上のカーソル位置が画面真ん中より右にあれば左に、左�
 > スクリプト内でPositionModule,WindowModuleを使用。
 
 ### 使い方
- - スクリプト内定数`DISP_WIDE`を環境に合わせて設定する。
- - PPvを起動。
+
+- スクリプト内定数`DISP_WIDE`を環境に合わせて設定する。
+- PPvを起動。
 
 ※画像は古いカスタム状態です。上下左右移動は廃止(左右移動のみ)しました。
 <BR>

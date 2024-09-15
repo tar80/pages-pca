@@ -7,9 +7,15 @@ comment: コマンドを修正。スクリプトを書き直した。
 repository: tar80/ppm-view
 categories: PPv
 ---
+
+>24/9/15 こちらの記事は古い内容になっています。記事は残してありますが、ppm-viewを
+>導入すると更新されたカスタマイズ設定を適用できます。
+
 ### 説明
 
-[movinigPPv]({{ site.baseurl }}{% post_url 19-11-11-moving_ppv %})と[behaviorPPv]({{ site.baseurl }}{% post_url 20-05-02-behavior_ppv %})を使い、PPcの窓数に応じて連動ビューの表示方法を変更する設定集。<BR>
+[movinigPPv]({{ site.baseurl }}{% post_url 19-11-11-moving_ppv %})と
+[behaviorPPv]({{ site.baseurl }}{% post_url 20-05-02-behavior_ppv %})を使い、
+PPcの窓数に応じて連動ビューの表示方法を変更する設定集。  
 連動ビュー起動時にペインが一枚であれば普通に起動。反対窓があればcupturewindowに取り込み。
 その際、取り込む前のサイズを記憶しておいて連動ビュー終了時に元のサイズに戻します。
 
