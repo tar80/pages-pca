@@ -3,7 +3,7 @@ layout: post
 title: PPvプラグイン
 version: PPx198+3以降 WSH R21+6以降
 date: 2024-09-15
-comment: 更新。
+comment: LaunchPPv.jsの引数説明を更新
 repository: tar80/ppm-view
 categories: PPc PPv @plugin
 ---
@@ -55,16 +55,19 @@ PPvをより便利に操作するための設定集です。様々な機能を�
 - **窓数に合わせた連動ビューの制御**  
    PPc の窓数に合わせて、1枚なら通常起動、2枚なら`*capturewindow`で反対窓に取り込みます。
   その際`X_win:V`を指定できますが、capturewindow取り込み時にはタイトルバーを強制offします。
-  また、取り込み前のサイズやXV_tmod(キャレット状態)を維持します。
+  また、取り込み前のサイズやXV_tmod(キャレット状態)を維持します。  
   [連動ビュー動作例]({{ site.baseurl }}{% link /public/img/view_sync.webp %})
 
 <BR>
 - **Batを使ってPPvで構文ハイライト**  
   BatとNkfを使用してファイルに構文ハイライトを適用します。  
-  ファイルエンコードの自動判別を追加しました。BomなしUnicodeは判別できませんが、
-  一度ファイルを開いたあとであればPPvのファイル判別を利用することで再読み込みによる
-  構文ハイライトが有効です。設定によりPPvを開いたあとに、遅延実行で
-  構文ハイライトを読み込むことも可能です。  
+  ファイルエンコードは自動判別されますがBOMなしUnicodeは判別できません。
+  一度ファイルを開いたあとであれば、PPvのファイル判別を利用した再読み込み時の
+  構文ハイライトが可能です。  
+  引数の値によって、PPvを開いたあとに遅延実行で構文ハイライトを読み込む、
+  UTF-8と見做して読み込む、UTF-16LEと見做して読み込むことも可能です。BOMなしUNICODEは
+  あまり使われることがなさそうなので、UTF-8と見做して読み込む設定か、より正確さを
+  求めるなら起動後遅延実行にするとよいでしょう。  
   [エンコード自動判定]({{ site.baseurl }}{% link /public/img/view_auto_syntax.webp %})
 
     | key                   | command                |
