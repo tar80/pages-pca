@@ -58,3 +58,6 @@ exclude:
   - vendor/ruby/
   - .markdownlint.yaml
   - .prettierrc.yml
+  - .obsidian.vimrc
+  - .trash
+  - _templates

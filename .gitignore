@@ -8,6 +8,14 @@ _site/
 .bundle/
 vendor/
 
+# Ignore obsidian files
+.obsidian/
+.smtcmp_json_db/
+_templates
+.trash
+.obsidian.vimrc
+.smtcmp_vector_db.tar.gz
+
 # Ignore
 _drafts/
 gemfile.lock

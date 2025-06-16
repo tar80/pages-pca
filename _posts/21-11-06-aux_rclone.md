@@ -38,7 +38,7 @@ ppm-rcloneは、aux: sample R8(ppxaux08)と比較すると以下のような特�
 - 5つまでのファイル操作を同時実行し、30までのファイル操作を保留(stackPPb)
 
 > - 基本非同期実行ですが、PPvでのファイル読み込み時にPPbとの同期通信が発生するため
->   PPvがアクティブ(フォーカス移動、LOASCUSTなど)になったときはキーフックされます
+>   PPvがアクティブ(フォーカス移動、LOADCUSTなど)になったときはキーフックされます
 > - カスタマイズにはrclone\.exe、ls2lf\.exe(ppxaux06以降)、PPxKeyModuleが必要です
 
 ### 使い方
