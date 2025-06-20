@@ -2,7 +2,7 @@ title: PPx Customize Articles
 author: tar80
 email: tar80master@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  ©  2021-2024 tar80
+  ©  2021-2025 tar80
 # baseurl: "" # the subpath of your site, e.g. /blog
 # url: "" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username:
@@ -48,6 +48,8 @@ plugins:
 exclude:
   - .sass-cache/
   - .jekyll-cache/
+  - .obsidian/
+  - .smtcmp_json_db/
   - gemfiles/
   - Gemfile
   - Gemfile.lock
@@ -61,3 +63,5 @@ exclude:
   - .obsidian.vimrc
   - .trash
   - _templates
+  - .smtcmp_vector_db.tar.gz
+
