@@ -34,7 +34,7 @@ Markdownの編集時に通常は`editor`、vault配下は`Obsidian`でファイ�
 
 ```text
 E_editor = {
-* ,*if(1==%*script("path\to\isObsidianVault.js"))%:obsidian://open?path=%FDC%:*stop
+md ,*if(1==%*script("path\to\isObsidianVault.js"))%:obsidian://open?path=%FDC%:*stop
    editor
 }
 ```
