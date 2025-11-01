@@ -2,8 +2,8 @@
 layout: post
 title: 画像書庫にサムネイルを適用する
 version: PPx205以降
-date: 2025-10-28
-comment: 投稿。
+date: 2025-11-1
+comment: 使用するコマンドに7zが抜けていたので追加した
 repository: tar80/ppm-misc
 categories: PPc @plugin
 ---
@@ -11,7 +11,7 @@ categories: PPc @plugin
 ### 説明
 
 ifextend.spiを使って書庫内の最初の画像ファイルをサムネイルに登録します。  
-コマンド内で、nkf, sed, xargs, magick を使用します。 重い処理なので、頻繁に表示する書庫はサムネイルキャッシュ化推奨です。
+コマンド内で、7z, nkf, sed, xargs, magick を使用します。 重い処理なので、頻繁に表示する書庫はサムネイルキャッシュ化推奨です。
 
 ### 使い方
 
